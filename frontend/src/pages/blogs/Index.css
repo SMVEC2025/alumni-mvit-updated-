@@ -1,0 +1,273 @@
+/* ════════════════════════════════════════════════════════════════
+   Blogs — aligned with the Notifications design language
+   (Futura PT, flat #f3f6f8 surface, charcoal ink + single blue accent,
+    pill tab switcher, light-weight headings, clean rounded cards)
+   ════════════════════════════════════════════════════════════════ */
+.blogs-page {
+  --ink: #1d2226;
+  --ink-soft: #56687a;
+  --ink-faint: #8a96a3;
+  --line: #e7e9ef;
+  --brand: #0a66c2;
+  --brand-dark: #004182;
+  background: #f3f6f8;
+  min-height: 100vh;
+  padding: 100px 16px 72px;
+  font-family: 'Futura PT', system-ui, sans-serif;
+}
+.blogs-page * { font-family: inherit; }
+.composer-overlay, .composer-overlay * { font-family: 'Futura PT', system-ui, sans-serif; }
+
+/* Feed content centered in a readable column (modal overlay excluded). */
+.blogs-page > *:not(.composer-overlay) {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Composer card (top) ── */
+.composer-card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px 26px 20px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  margin-bottom: 24px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.composer-card:hover { box-shadow: 0 6px 22px rgba(16, 24, 40, 0.07); border-color: #dfe2e9; }
+.composer-card__intro {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.composer-card__eyebrow {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: var(--ink-faint);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+/* Light-weight heading — matches the notifications page header treatment */
+.composer-card__intro h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 0.005em;
+}
+.composer-card__top { display: flex; align-items: center; gap: 14px; }
+.composer-card__avatar {
+  width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
+  background: #eef1f5; display: flex; align-items: center; justify-content: center;
+  color: #4a5468; font-weight: 600; font-size: 1rem;
+}
+.composer-card__avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.composer-card__prompt {
+  flex: 1; text-align: left; background: #fff; border: 1px solid var(--line); border-radius: 999px;
+  padding: 14px 22px; color: var(--ink-faint); font-size: 0.95rem; cursor: pointer; line-height: 1.45;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.composer-card__prompt:hover { background: #fafbfc; border-color: #d6dae3; }
+.composer-card__post {
+  background: var(--brand); color: #fff;
+  border: none; border-radius: 999px; padding: 10px 22px; font-weight: 600; cursor: pointer;
+  font-size: 0.88rem; letter-spacing: 0.01em; transition: background 0.15s ease;
+}
+.composer-card__post:hover { background: var(--brand-dark); }
+.composer-card__post--top { flex-shrink: 0; }
+
+/* ── Filter tabs — pill switcher (like the notifications page) ──
+   The row spans the centered 720px column; the pill hugs its content and
+   left-aligns within it (an inline-flex pill alone can't be margin-centered,
+   so it would otherwise drift to the page edge). */
+.blogs-tabs-row { margin-bottom: 18px; }
+.blogs-tabs {
+  display: inline-flex; gap: 4px; background: #fff; border: 1px solid var(--line);
+  border-radius: 999px; padding: 5px;
+}
+.blogs-tab {
+  border: none; background: none; cursor: pointer; padding: 8px 22px; border-radius: 999px;
+  font-size: 0.88rem; font-weight: 600; color: var(--ink-faint); transition: all 0.15s ease;
+}
+.blogs-tab:hover { color: var(--ink); }
+.blogs-tab.is-active { background: var(--brand); color: #fff; }
+
+/* ── Post card ── */
+.post-card {
+  background: #fff;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.post-card:hover { box-shadow: 0 6px 22px rgba(16, 24, 40, 0.07); border-color: #dfe2e9; }
+
+/* Author header */
+.post-card__head { display: flex; align-items: center; gap: 12px; padding: 18px 22px 12px; }
+.post-card__avatar {
+  width: 46px; height: 46px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
+  background: #eef1f5; display: flex; align-items: center; justify-content: center;
+  color: #1f2a5b; font-weight: 700; font-size: 1rem;
+}
+.post-card__avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.post-card__head-info { flex: 1; min-width: 0; }
+.post-card__author-name { font-weight: 700; color: var(--ink); font-size: 0.98rem; line-height: 1.25; letter-spacing: -0.005em; }
+/* Clickable author → directory profile */
+.post-card__avatar--link { cursor: pointer; text-decoration: none; transition: box-shadow 0.15s ease; }
+.post-card__avatar--link:hover { box-shadow: 0 0 0 2px color-mix(in srgb, var(--brand) 35%, transparent); }
+.post-card__author-name--link { display: inline-block; text-decoration: none; color: var(--ink); cursor: pointer; }
+.post-card__author-name--link:hover { color: var(--brand); }
+.post-card__author-headline {
+  font-size: 0.82rem; color: var(--ink-faint); line-height: 1.3; margin-top: 1px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.post-card__time { font-size: 0.76rem; color: var(--ink-faint); margin-top: 1px; }
+.post-card__head-menu { display: flex; gap: 6px; flex-shrink: 0; }
+.post-card__head-menu button {
+  background: none; border: none; cursor: pointer; color: var(--ink-faint); font-size: 0.8rem;
+  font-weight: 600; padding: 5px 10px; border-radius: 8px; transition: all 0.12s ease;
+}
+.post-card__head-menu button:hover { color: var(--ink); background: #f3f5f8; }
+.post-card__hidden-flag { color: #d8324c; font-weight: 600; }
+
+/* Title */
+.post-card__title { font-size: 1.12rem; font-weight: 700; color: var(--ink); margin: 0 22px 10px; letter-spacing: -0.01em; line-height: 1.35; }
+
+/* Cover image */
+.post-card__cover {
+  display: block; width: calc(100% - 24px); max-height: 460px; object-fit: cover;
+  margin: 0 12px 14px; border-radius: 10px; border: 1px solid var(--line);
+}
+
+/* Hashtags */
+.post-card__tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 22px 10px; }
+.post-card__tag { color: var(--brand); font-size: 0.84rem; cursor: pointer; font-weight: 600; }
+.post-card__tag:hover { text-decoration: underline; }
+
+/* Description */
+.post-card__text {
+  color: var(--ink-soft); white-space: pre-wrap; line-height: 1.6; font-size: 0.94rem; margin: 0 22px 14px;
+}
+.post-card__more { background: none; border: none; color: var(--brand); cursor: pointer; font-size: 0.9rem; padding: 0; font-weight: 600; }
+
+/* Stats row */
+.post-card__stats {
+  display: flex; align-items: center; padding: 0 22px 12px; font-size: 0.82rem; color: var(--ink-faint);
+}
+.post-card__stats-likes { display: flex; align-items: center; gap: 6px; }
+.post-card__reaction-icon {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--brand); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center; font-size: 0.66rem;
+}
+
+/* Action bar */
+.post-card__actions {
+  display: flex; align-items: center; padding: 6px 12px;
+  border-top: 1px solid #f1f2f6;
+}
+.post-card__action {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: none; border: none; cursor: pointer; color: var(--ink-soft); font-weight: 500;
+  font-size: 0.92rem; padding: 12px 4px; border-radius: 8px; transition: background 0.12s, color 0.12s;
+}
+.post-card__action:hover { background: #f6f8fa; color: var(--ink); }
+.post-card__action.is-liked { color: var(--brand); font-weight: 600; }
+.post-card__action svg { font-size: 1.25rem; }
+
+.blogs-empty, .blogs-loading { text-align: center; color: var(--ink-faint); padding: 56px 20px; }
+.blogs-empty strong { color: var(--ink); }
+.blogs-more {
+  display: block; margin: 8px auto 0; padding: 11px 26px; border: 1px solid var(--line);
+  background: #fff; border-radius: 999px; cursor: pointer; color: var(--ink-soft); font-weight: 600;
+  font-size: 0.9rem; transition: background 0.15s ease, color 0.15s ease;
+}
+.blogs-more:hover { background: #f6f8fa; color: var(--ink); }
+
+@media (max-width: 640px) {
+  .composer-card {
+    padding: 20px 18px 16px;
+    border-radius: 14px;
+  }
+  .composer-card__intro {
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+  .composer-card__intro h2 { font-size: 1.35rem; }
+  .composer-card__post--top { width: 100%; }
+  .composer-card__top { align-items: center; }
+  .composer-card__prompt { padding: 12px 18px; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   Composer modal — same refined palette
+   ════════════════════════════════════════════════════════════════ */
+.composer-overlay {
+  position: fixed; inset: 0; background: rgba(17, 24, 39, 0.55); backdrop-filter: blur(3px); z-index: 1000;
+  display: flex; align-items: flex-start; justify-content: center; padding: 6vh 16px; overflow-y: auto;
+}
+.composer { background: #fff; border-radius: 18px; width: 100%; max-width: 640px; padding: 26px; box-shadow: 0 24px 60px rgba(16, 24, 40, 0.22); }
+.composer h2 { margin: 0 0 16px; color: #1d2226; font-size: 1.5rem; font-weight: 300; letter-spacing: 0.005em; }
+.composer label { display: block; font-size: 0.86rem; color: #1d2226; margin: 16px 0 6px; font-weight: 600; }
+.composer input[type="text"], .composer textarea {
+  width: 100%; box-sizing: border-box; padding: 11px 14px; border: 1px solid #e7e9ef; border-radius: 10px;
+  font-size: 0.95rem; font-family: inherit; color: #1d2226; background: #fbfcfd;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.composer input[type="text"]:focus, .composer textarea:focus {
+  outline: none; border-color: #0a66c2; box-shadow: 0 0 0 3px rgba(10, 102, 194, 0.16); background: #fff;
+}
+.composer textarea { resize: vertical; min-height: 140px; line-height: 1.55; }
+
+/* ── Cover upload: styled dropzone (replaces native file input) ── */
+.composer__dropzone {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  margin-top: 6px; padding: 26px 18px; cursor: pointer; text-align: center;
+  border: 1.5px dashed #d6dae3; border-radius: 12px; background: #fafbfc;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.composer__dropzone:hover { border-color: #0a66c2; background: #f5f9fc; }
+.composer__dropzone-icon {
+  display: flex; align-items: center; justify-content: center; width: 44px; height: 44px;
+  border-radius: 50%; background: #eef5fc; color: #0a66c2; font-size: 1.4rem; margin-bottom: 2px;
+}
+.composer__dropzone-text { font-size: 0.92rem; color: #56687a; }
+.composer__dropzone-text strong { color: #0a66c2; font-weight: 600; }
+.composer__dropzone-hint { font-size: 0.78rem; color: #8a96a3; }
+
+.composer__cover { position: relative; margin-top: 6px; border-radius: 12px; overflow: hidden; }
+.composer__cover-preview { display: block; width: 100%; max-height: 220px; object-fit: cover; }
+.composer__cover-remove {
+  position: absolute; top: 10px; right: 10px; width: 32px; height: 32px; border-radius: 50%;
+  border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(17, 24, 39, 0.6); color: #fff; font-size: 1.05rem; backdrop-filter: blur(2px);
+  transition: background 0.15s ease;
+}
+.composer__cover-remove:hover { background: rgba(17, 24, 39, 0.82); }
+.composer__cover-change {
+  position: absolute; bottom: 10px; right: 10px; cursor: pointer;
+  background: rgba(255, 255, 255, 0.92); color: #1d2226; font-size: 0.8rem; font-weight: 600;
+  padding: 6px 14px; border-radius: 999px; box-shadow: 0 1px 4px rgba(16, 24, 40, 0.15);
+  transition: background 0.15s ease;
+}
+.composer__cover-change:hover { background: #fff; }
+.composer__actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 22px; }
+.composer__cancel {
+  background: #fff; border: 1px solid #e7e9ef; border-radius: 999px; padding: 10px 22px; cursor: pointer;
+  font-family: inherit; font-weight: 600; color: #56687a; font-size: 0.9rem; transition: background 0.15s ease;
+}
+.composer__cancel:hover { background: #f6f8fa; }
+.composer__submit {
+  background: #0a66c2; color: #fff; border: none; border-radius: 999px; padding: 10px 28px;
+  font-family: inherit; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: background 0.15s ease;
+}
+.composer__submit:hover:not(:disabled) { background: #004182; }
+.composer__submit:disabled { opacity: 0.5; cursor: not-allowed; }
+.composer__hint { font-size: 0.78rem; color: #8a96a3; margin-top: 4px; }

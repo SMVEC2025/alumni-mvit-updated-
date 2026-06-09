@@ -1,0 +1,234 @@
+.notifications-page {
+
+  // ── Hero ─────────────────────────────────────────────────
+  .notifications-hero {
+    background: linear-gradient(135deg, $secondary-color 0%, darken($secondary-color, 14%) 100%);
+    padding: 96px 0 40px;
+    color: #fff;
+
+    .notifications-hero-inner {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .notifications-hero-icon {
+      font-size: 2.8rem;
+      opacity: 0.85;
+      flex-shrink: 0;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-family: 'Futura PT', sans-serif;
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    p {
+      margin: 0;
+      font-family: 'Futura PT', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 400;
+      opacity: 0.75;
+    }
+  }
+
+  // ── Content area ─────────────────────────────────────────
+  .notifications-content {
+    padding: 32px 0 60px;
+    background: #f5f5f3;
+    min-height: 50vh;
+  }
+
+  // ── Toolbar: tabs + mark-all ─────────────────────────────
+  .notif-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+
+  .notif-tabs {
+    display: inline-flex;
+    background: #fff;
+    border: 1px solid #ece9e3;
+    border-radius: 10px;
+    padding: 4px;
+    gap: 4px;
+  }
+
+  .notif-tab {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: 'Futura PT', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #777;
+    padding: 7px 16px;
+    border-radius: 7px;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    &.is-active {
+      background: $secondary-color;
+      color: #fff;
+    }
+  }
+
+  .notif-markall {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #ddd6cc;
+    background: #fff;
+    color: $secondary-color;
+    cursor: pointer;
+    font-family: 'Futura PT', sans-serif;
+    font-size: 0.83rem;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: background 0.15s ease, opacity 0.15s ease;
+
+    svg { font-size: 1rem; }
+
+    &:hover:not(:disabled) { background: rgba($secondary-color, 0.06); }
+    &:disabled { opacity: 0.45; cursor: default; }
+  }
+
+  // ── Notification list ────────────────────────────────────
+  .notif-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .notif-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px 22px;
+    border: 1px solid #ece9e3;
+    transition: box-shadow 0.2s ease, background 0.2s ease;
+    width: 100%;
+    text-align: left;
+    font: inherit;
+
+    &.is-clickable { cursor: pointer; }
+
+    &:hover {
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+    }
+
+    // Unread: tinted background + accent left border.
+    &.is-unread {
+      background: rgba($secondary-color, 0.045);
+      border-left: 3px solid $secondary-color;
+      padding-left: 19px;
+    }
+  }
+
+  // Small accent dot on unread rows.
+  .notif-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: $secondary-color;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .notif-icon-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+    background: rgba($secondary-color, 0.08);
+    color: $secondary-color;
+
+    // Per-type accent colours.
+    &--post_like { background: rgba(37, 99, 235, 0.1); color: #2563eb; }
+    &--post_hidden { background: rgba(220, 38, 38, 0.1); color: #dc2626; }
+    &--post_unhidden { background: rgba(22, 163, 74, 0.1); color: #16a34a; }
+    &--welcome { background: rgba(245, 158, 11, 0.12); color: #f59e0b; }
+    &--announcement { background: rgba(139, 92, 246, 0.12); color: #8b5cf6; }
+  }
+
+  .notif-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .notif-time {
+    display: block;
+    font-family: 'Futura PT', sans-serif;
+    font-size: 0.75rem;
+    color: #aaa;
+    margin-bottom: 5px;
+  }
+
+  .notif-title {
+    margin: 0 0 5px;
+    font-family: 'Futura PT', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: $text-dark;
+    line-height: 1.4;
+  }
+
+  .notif-text {
+    margin: 0;
+    font-size: 0.87rem;
+    color: #666;
+    line-height: 1.65;
+  }
+
+  // ── Empty state ──────────────────────────────────────────
+  .notif-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 72px 24px;
+    color: #bbb;
+    gap: 12px;
+
+    svg {
+      font-size: 3rem;
+    }
+
+    p {
+      font-family: 'Futura PT', sans-serif;
+      font-size: 0.95rem;
+      margin: 0;
+    }
+  }
+
+  // ── Load more ────────────────────────────────────────────
+  .notif-more {
+    display: block;
+    margin: 18px auto 0;
+    border: 1px solid #ddd6cc;
+    background: #fff;
+    color: $secondary-color;
+    cursor: pointer;
+    font-family: 'Futura PT', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 10px 28px;
+    border-radius: 9px;
+    transition: background 0.15s ease;
+
+    &:hover { background: rgba($secondary-color, 0.06); }
+  }
+}

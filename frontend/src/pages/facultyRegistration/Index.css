@@ -1,0 +1,96 @@
+.faculty-registration-page {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px 20px;
+  background: linear-gradient(to bottom, #37419a 70px, #f5f5f4 70px);
+}
+
+.faculty-registration-shell {
+  width: 100%;
+  max-width: 760px;
+  margin-top: 100px;
+}
+
+.faculty-registration-header h1 {
+  margin: 12px 0 8px;
+  color: #1b2366ce;
+  letter-spacing: 1.25px;
+  font-weight: 600;
+}
+
+.faculty-registration-header p {
+  margin: 0;
+  color: #5f6473;
+}
+
+.faculty-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+}
+
+.faculty-registration-card {
+  margin-top: 24px;
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.faculty-alert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+}
+
+.faculty-alert--error {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.faculty-alert--success {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.faculty-form {
+  display: grid;
+  gap: 14px;
+  font-family: 'Futura PT', sans-serif;
+}
+
+.faculty-form-group {
+  display: grid;
+  gap: 6px;
+}
+
+.faculty-form-group input {
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 10px 12px;
+  outline: none;
+  background-color: transparent;
+}
+
+.faculty-form-group input:focus {
+  border-color: #111827;
+}
+
+.faculty-submit-btn {
+  border: 0;
+  border-radius: 4px;
+  background: #37419a;
+  color: #fff;
+  padding: 11px 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.faculty-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}

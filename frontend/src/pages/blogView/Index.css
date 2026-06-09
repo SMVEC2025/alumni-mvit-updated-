@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;500;600;700;800&display=swap');
+
+.blogview-page,
+.blogview-page * { font-family: 'Catamaran', sans-serif; }
+
+.blogview-page {
+  background: #f6f7fb;
+  min-height: 100vh;
+  padding: 100px 16px 72px;
+}
+.blogview-inner { max-width: 720px; margin: 0 auto; }
+
+.blogview-back {
+  display: inline-flex; align-items: center; gap: 6px; color: #1f2a5b; font-weight: 600;
+  text-decoration: none; margin-bottom: 16px; font-size: 0.92rem;
+}
+.blogview-back:hover { text-decoration: underline; }
+
+.blogview-cta {
+  text-align: center; background: #fff; border: 1px solid #eceef3; border-radius: 18px;
+  padding: 28px 20px; margin-top: 20px;
+}
+.blogview-cta p { color: #4b5160; margin: 0 0 14px; font-size: 1rem; }
+.blogview-cta-btn {
+  display: inline-block; background: #f2ad20; color: #1f2a44; border-radius: 999px;
+  padding: 11px 26px; font-weight: 700; text-decoration: none;
+}
+.blogview-cta-btn:hover { background: #e09e14; }

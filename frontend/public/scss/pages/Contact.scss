@@ -1,0 +1,323 @@
+.contact-page {
+
+  // ── Hero ────────────────────────────────────────────────────────────────
+  .contact-hero {
+    position: relative;
+    background:
+      radial-gradient(ellipse at top, rgba($primary-color, 0.12), transparent 60%),
+      linear-gradient(135deg, $secondary-color 0%, darken($secondary-color, 14%) 100%);
+    padding: 140px 0 90px;
+    text-align: center;
+    color: $text-white;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -1px;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: $primary-color;
+      border-radius: 2px;
+    }
+
+    .contact-hero-eyebrow {
+      font-family: 'Futura PT', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: $primary-color;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: 'Arno Pro Display', Georgia, serif;
+      font-size: 3rem;
+      font-weight: 400;
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+
+    .contact-hero-sub {
+      font-family: 'Futura PT', sans-serif;
+      font-size: 1rem;
+      opacity: 0.78;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      padding: 100px 0 70px;
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  // ── Content ─────────────────────────────────────────────────────────────
+  .contact-content {
+    padding: 90px 0 110px;
+    background: #faf9f6;
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 70px;
+      align-items: start;
+
+      @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      padding: 60px 0 70px;
+    }
+  }
+
+  // ── Section heads ──────────────────────────────────────────────────────
+  .contact-section-head {
+    margin-bottom: 32px;
+
+    .contact-eyebrow {
+      font-family: 'Futura PT', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: $primary-color;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-family: 'Arno Pro Display', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: $text-dark;
+      line-height: 1.2;
+      margin-bottom: 12px;
+
+      @media (max-width: 600px) {
+        font-size: 1.6rem;
+      }
+    }
+
+    .contact-section-sub {
+      font-family: 'Futura PT', sans-serif;
+      font-size: 0.95rem;
+      color: $text-light;
+      line-height: 1.6;
+      max-width: 420px;
+    }
+  }
+
+  // ── Form ───────────────────────────────────────────────────────────────
+  .contact-form-wrapper {
+    background: #ffffff9d;
+    border: 1px solid rgba($primary-color, 0.18);
+    padding: 44px 40px;
+    border-radius: 4px;
+
+    @media (max-width: 600px) {
+      padding: 28px 22px;
+    }
+  }
+
+  .contact-form {
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+
+      @media (max-width: 500px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+
+      label {
+        display: block;
+        font-family: 'Futura PT', sans-serif;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: $text-light;
+        margin-bottom: 8px;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        font-family: 'Futura PT', sans-serif;
+        font-size: 0.95rem;
+        color: $text-dark;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid rgba($secondary-color, 0.18);
+        padding: 10px 2px;
+        border-radius: 0;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        resize: vertical;
+
+        &::placeholder {
+          color: rgba($text-light, 0.7);
+        }
+
+        &:focus {
+          border-bottom-color: $primary-color;
+          box-shadow: 0 1px 0 0 $primary-color;
+        }
+      }
+
+      textarea {
+        min-height: 140px;
+        padding: 12px 2px;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  .contact-submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 180px;
+    min-height: 46px;
+    font-family: 'Futura PT', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: $text-white;
+    background: $primary-color;
+    border: 1px solid $primary-color;
+    padding: 14px 28px;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+
+    svg {
+      transition: transform 0.25s ease;
+    }
+
+    &:hover {
+      background: darken($primary-color, 8%);
+
+      svg {
+        transform: translateX(3px);
+      }
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+
+    &:disabled {
+      opacity: 0.85;
+      cursor: not-allowed;
+
+      &:hover {
+        background: $primary-color;
+
+        svg {
+          transform: none;
+        }
+      }
+    }
+  }
+
+  .contact-submit-spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(#fff, 0.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: contact-submit-spin 0.7s linear infinite;
+  }
+
+  @keyframes contact-submit-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  // ── Info side ──────────────────────────────────────────────────────────
+  .contact-info {
+    .info-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .info-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 12px 0;
+      background: #ffffff1a;
+      border-radius: 3px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+
+     
+
+      .info-icon {
+        width: 44px;
+        height: 44px;
+        background: rgba($primary-color, 0.12);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $primary-color;
+        font-size: 1.15rem;
+        flex-shrink: 0;
+      }
+
+      .info-text {
+        flex: 1;
+        min-width: 0;
+
+        h4 {
+          font-family: 'Futura PT', sans-serif;
+          font-size: 0.72rem;
+          font-weight: 600;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: $text-light;
+          margin-bottom: 6px;
+        }
+
+        p {
+          font-family: 'Futura PT', sans-serif;
+          font-size: 0.95rem;
+          color: $text-dark;
+          line-height: 1.55;
+          margin: 0;
+
+          a {
+            color: $secondary-color;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease, color 0.2s ease;
+
+            &:hover {
+              color: $primary-color;
+              border-bottom-color: $primary-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}

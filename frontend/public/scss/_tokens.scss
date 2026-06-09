@@ -1,0 +1,44 @@
+// ─── Design Tokens ───────────────────────────────────────────────
+// Shared spacing, typography, radius, shadows, and focus styles
+// used across the directory redesign.
+
+// Spacing scale (px)
+$sp-4: 4px;
+$sp-8: 8px;
+$sp-12: 12px;
+$sp-16: 16px;
+$sp-24: 24px;
+$sp-32: 32px;
+$sp-48: 48px;
+
+// Border-radius
+$rad-sm: 8px;
+$rad-md: 12px;
+$rad-lg: 16px;
+$rad-full: 9999px;
+
+// Shadows (elevation)
+$elev-1: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+$elev-2: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+$elev-3: 0 8px 24px rgba(0, 0, 0, 0.10), 0 2px 6px rgba(0, 0, 0, 0.04);
+
+// Typography scale (px → rem)
+$fs-xs: 0.75rem;   // 12px
+$fs-sm: 0.875rem;  // 14px
+$fs-base: 1rem;    // 16px
+$fs-md: 1.125rem;  // 18px
+$fs-lg: 1.25rem;   // 20px
+$fs-xl: 1.5rem;    // 24px
+
+// Focus ring
+$focus-ring: 0 0 0 3px rgba($secondary-color, 0.25);
+$focus-ring-offset: 0 0 0 2px $bg-white, $focus-ring;
+
+// Transition
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+$dur-fast: 0.15s;
+$dur-normal: 0.25s;
+
+// Skeleton shimmer
+$shimmer-bg: #e8e8ee;
+$shimmer-shine: #f5f5f8;

@@ -1,0 +1,242 @@
+.container {
+  max-width: 1300px;
+  padding: 0 30px;
+  margin: 0 auto;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+
+  h2 {
+    font-size: 2rem;
+    color: $secondary-color;
+    margin-bottom: 12px;
+  }
+
+  p {
+    font-size: 1.05rem;
+    color: $text-light;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition;
+  text-decoration: none;
+  text-align: center;
+
+  &-primary {
+    background: #043c47;
+    color: $text-white;
+
+    &:hover {
+      background: darken($primary-color, 8%);
+      transform: translateY(-1px);
+    }
+  }
+
+  &-secondary {
+    background: $secondary-color;
+    color: $text-white;
+
+    &:hover {
+      background: darken($secondary-color, 8%);
+      transform: translateY(-1px);
+    }
+  }
+
+  &-outline {
+    background: transparent;
+    border: 2px solid $primary-color;
+    color: $primary-color;
+
+    &:hover {
+      background: $primary-color;
+      color: $text-white;
+    }
+  }
+}
+
+.card {
+  background: $bg-white;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  overflow: hidden;
+  transition: $transition;
+
+
+}
+
+.form-group {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: rgb(94, 94, 94);
+    font-size: 0.9rem;
+    font-family: 'Futura PT', sans-serif;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: $transition;
+    outline: none;
+    font-family: 'Futura PT', sans-serif !important;
+
+    &:focus {
+      border-color: $secondary-color;
+      box-shadow: 0 0 0 3px rgba($secondary-color, 0.1);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+}
+
+// Keep browser autofill background white across all forms.
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  box-shadow: 0 0 0 1000px #ffffff inset !important;
+  -webkit-text-fill-color: inherit !important;
+  caret-color: inherit;
+}
+
+input:-moz-autofill,
+textarea:-moz-autofill,
+select:-moz-autofill {
+  box-shadow: 0 0 0 1000px #ffffff inset !important;
+}
+
+// ── Notistack container ──
+.notistack-SnackbarContainer {
+  z-index: 99999999 !important;
+  width: min(92vw, 420px);
+  padding: 12px;
+}
+
+// ── Custom toast ──
+.custom-toast-root {
+  min-width: 280px !important;
+  max-width: 400px;
+  background: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.custom-toast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #1a1a2e;
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  font-family: 'Futura PT', 'Roboto', sans-serif;
+  animation: toast-slide-in 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+
+  &__icon {
+    flex-shrink: 0;
+    font-size: 1.65rem;
+    display: flex;
+    align-items: center;
+
+    &--success {
+      color: #22c55e;
+    }
+
+    &--error {
+      color: #ef4444;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__message {
+    margin: 0;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: #f1f1f1;
+    line-height: 1.4;
+  }
+
+  &__close {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+
+    &:hover {
+      color: #f1f1f1;
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+@keyframes toast-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .notistack-SnackbarContainer {
+    width: calc(100vw - 16px);
+    padding: 8px;
+  }
+
+  .custom-toast {
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+
+  .custom-toast__message {
+    font-size: 0.88rem;
+  }
+}

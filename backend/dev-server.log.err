@@ -1,0 +1,722 @@
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+Sat, 06 Jun 2026 04:39:26 GMT express deprecated res.clearCookie: Passing "options.maxAge" is deprecated. In v5.0.0 of Express, this option will be ignored, as res.clearCookie will automatically set cookies to expire immediately. Please update your code to omit this option. at file:\D:\alumni-mvit\alumni-mvit\backend\src\routes\auth.routes.js:53:7
+Sat, 06 Jun 2026 04:39:26 GMT express deprecated res.clearCookie: Passing "options.maxAge" is deprecated. In v5.0.0 of Express, this option will be ignored, as res.clearCookie will automatically set cookies to expire immediately. Please update your code to omit this option. at file:\D:\alumni-mvit\alumni-mvit\backend\src\routes\auth.routes.js:54:7
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1
+⚠️  SMTP not configured — contact emails will not send.
+🔓 OTP_BYPASS is ON — anyone can log in with just a mobile number. Disable for production security.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (D:\alumni-mvit\alumni-mvit\backend\node_modules\express\lib\application.js:635:24)
+    at start (file:///D:/alumni-mvit/alumni-mvit/backend/src/server.js:9:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+
+Node.js v22.21.1

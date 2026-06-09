@@ -1,0 +1,486 @@
+.admin-messages-page {
+
+  .am-loading {
+    padding: 120px 0;
+    text-align: center;
+    color: $text-light;
+    font-family: 'Futura PT', sans-serif;
+  }
+
+  // Full-page loader shown until access check resolves
+  .am-fullscreen-loader {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #faf9f6;
+  }
+
+  .am-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba($primary-color, 0.18);
+    border-top-color: $primary-color;
+    border-radius: 50%;
+    animation: am-spin 0.8s linear infinite;
+  }
+
+  @keyframes am-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  // ── Hero ────────────────────────────────────────────────────────────────
+  .am-hero {
+    background:
+      radial-gradient(ellipse at top, rgba($primary-color, 0.12), transparent 60%),
+      linear-gradient(135deg, $secondary-color 0%, darken($secondary-color, 14%) 100%);
+    padding: 110px 0 50px;
+    color: $text-white;
+    text-align: center;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -1px;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: $primary-color;
+      border-radius: 2px;
+    }
+
+    .am-eyebrow {
+      font-family: 'Futura PT', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: $primary-color;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-family: 'Arno Pro Display', Georgia, serif;
+      font-size: 2.4rem;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+
+    .am-sub {
+      font-family: 'Futura PT', sans-serif;
+      font-size: 0.95rem;
+      opacity: 0.78;
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 600px) {
+      padding: 90px 0 40px;
+      h1 { font-size: 1.7rem; }
+    }
+  }
+
+  // ── Content ────────────────────────────────────────────────────────────
+  .am-content {
+    padding: 50px 0 100px;
+    background: #faf9f6;
+    min-height: 60vh;
+  }
+
+  .am-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .am-search {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    border: 1px solid rgba($secondary-color, 0.18);
+    border-radius: 4px;
+    padding: 10px 14px;
+    min-width: 320px;
+    flex: 1;
+    max-width: 480px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    svg { color: $text-light; flex-shrink: 0; }
+    input {
+      border: none; outline: none; background: transparent;
+      font-family: 'Futura PT', sans-serif;
+      font-size: 0.92rem;
+      color: $text-dark;
+      width: 100%;
+      &::placeholder { color: $text-light; }
+    }
+    &:focus-within {
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.08);
+    }
+  }
+
+  .am-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .am-filter {
+    font-family: 'Futura PT', sans-serif;
+    font-size: 0.88rem;
+    color: $text-dark;
+    background: transparent;
+    border: 1px solid rgba($secondary-color, 0.18);
+    border-radius: 4px;
+    padding: 9px 14px;
+    cursor: pointer;
+    outline: none;
+
+    &:focus { border-color: $primary-color; }
+  }
+
+  .am-refresh-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: $primary-color;
+    color: $text-white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-family: 'Futura PT', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover { background: darken($primary-color, 8%); }
+    &:disabled { opacity: 0.6; cursor: not-allowed; }
+    svg { font-size: 1rem; }
+  }
+
+  // ── Table ──────────────────────────────────────────────────────────────
+  .am-table-wrap {
+    background: #fff;
+    border: 1px solid rgba($primary-color, 0.18);
+    border-radius: 4px;
+    overflow-x: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  }
+
+  .am-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Futura PT', sans-serif;
+    font-size: 0.92rem;
+
+    thead th {
+      text-align: left;
+      padding: 14px 18px;
+      font-weight: 600;
+      font-size: 0.72rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: $text-light;
+      border-bottom: 1px solid rgba($secondary-color, 0.12);
+      background: #fcfbf7;
+      white-space: nowrap;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid rgba($secondary-color, 0.06);
+      cursor: pointer;
+      transition: background 0.15s ease, opacity 0.15s ease;
+
+      &:hover { background: rgba($primary-color, 0.035); }
+      &.am-row-selected { background: rgba($primary-color, 0.08); }
+      &:last-child { border-bottom: none; }
+
+      // Unread: medium weight, fully opaque.
+      &.am-row-unread {
+        background: #fff;
+
+        .am-name-cell,
+        .am-subject-cell {
+          font-weight: 600;
+          color: $text-dark;
+        }
+      }
+
+      // Read: lighter / dimmed.
+      &.am-row-read {
+        background: #fafaf7;
+        color: rgba($text-dark, 0.6);
+
+        .am-name-cell {
+          color: rgba($secondary-color, 0.6);
+          font-weight: 500;
+        }
+        .am-subject-cell {
+          color: rgba($text-dark, 0.55);
+          font-weight: 400;
+        }
+        .am-email-cell a {
+          color: rgba($text-dark, 0.55);
+        }
+      }
+    }
+
+    td {
+      padding: 16px 18px;
+      color: $text-dark;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    .am-name-cell { font-weight: 600; color: $secondary-color; }
+    .am-email-cell a {
+      color: $text-dark;
+      text-decoration: none;
+      &:hover { color: $primary-color; }
+    }
+    .am-subject-cell {
+      max-width: 340px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .am-actions-th { text-align: right; }
+    .am-actions {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .am-empty {
+      text-align: center;
+      padding: 48px 16px;
+      color: $text-light;
+      font-style: italic;
+    }
+  }
+
+  .am-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    border: 1px solid rgba($secondary-color, 0.15);
+    background: #fff;
+    color: $secondary-color;
+    cursor: pointer;
+    margin-left: 6px;
+    transition: all 0.15s ease;
+    text-decoration: none;
+
+    svg { font-size: 1rem; }
+    &:hover {
+      background: $primary-color;
+      color: $text-white;
+      border-color: $primary-color;
+    }
+    &.am-action-danger:hover {
+      background: #c0392b;
+      border-color: #c0392b;
+    }
+  }
+
+  // ── Status badges ──────────────────────────────────────────────────────
+  .am-badge {
+    display: inline-block;
+    font-family: 'Futura PT', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    border: 1px solid transparent;
+  }
+  .badge-received { background: rgba(#3498db, 0.1); color: #1e6091; border-color: rgba(#3498db, 0.25); }
+  .badge-emailed { background: rgba(#26814c, 0.1); color: #1d6038; border-color: rgba(#26814c, 0.25); }
+  .badge-failed { background: rgba(#e74c3c, 0.1); color: #a83227; border-color: rgba(#e74c3c, 0.3); }
+  .badge-read { background: rgba($text-light, 0.1); color: $text-light; border-color: rgba($text-light, 0.2); }
+  .badge-default { background: rgba($text-light, 0.08); color: $text-light; }
+
+  // ── Detail overlay ─────────────────────────────────────────────────────
+  .am-detail-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    animation: am-fade-in 0.18s ease;
+  }
+
+  .am-detail {
+    background: #fff;
+    max-width: 640px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    border-radius: 6px;
+    padding: 28px 32px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+    animation: am-pop 0.2s ease;
+
+    @media (max-width: 600px) { padding: 22px 20px; }
+  }
+
+  .am-detail-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    border-bottom: 1px solid rgba($secondary-color, 0.08);
+    padding-bottom: 16px;
+    margin-bottom: 18px;
+
+    h3 {
+      font-family: 'Arno Pro Display', Georgia, serif;
+      font-weight: 400;
+      font-size: 1.4rem;
+      color: $text-dark;
+      margin: 4px 0 0;
+      line-height: 1.3;
+    }
+  }
+
+  .am-detail-eyebrow {
+    font-family: 'Futura PT', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: $text-light;
+    margin: 0;
+  }
+
+  .am-detail-close {
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    line-height: 1;
+    color: $text-light;
+    cursor: pointer;
+    padding: 0 4px;
+    transition: color 0.15s ease;
+
+    &:hover { color: $primary-color; }
+  }
+
+  .am-detail-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 22px;
+
+    @media (max-width: 500px) { grid-template-columns: 1fr; }
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      span {
+        font-family: 'Futura PT', sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: $text-light;
+      }
+      strong, a {
+        font-family: 'Futura PT', sans-serif;
+        font-size: 0.92rem;
+        color: $text-dark;
+        font-weight: 500;
+        text-decoration: none;
+      }
+      a:hover { color: $primary-color; }
+    }
+  }
+
+  .am-detail-error {
+    grid-column: 1 / -1;
+    code {
+      background: rgba(#e74c3c, 0.08);
+      color: #a83227;
+      padding: 6px 10px;
+      border-radius: 3px;
+      font-size: 0.82rem;
+      display: block;
+    }
+  }
+
+  .am-detail-body {
+    font-family: 'Futura PT', sans-serif;
+    font-size: 0.96rem;
+    color: $text-dark;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    background: #faf9f6;
+    border-left: 3px solid $primary-color;
+    padding: 18px 20px;
+    border-radius: 0 3px 3px 0;
+  }
+
+  // ── Mobile table → cards ───────────────────────────────────────────────
+  @media (max-width: 768px) {
+    .am-toolbar { flex-direction: column; align-items: stretch; }
+    .am-search { max-width: 100%; min-width: 0; }
+    .am-toolbar-right { justify-content: space-between; }
+
+    .am-table-wrap { border: none; background: transparent; box-shadow: none; }
+    .am-table thead { display: none; }
+    .am-table, .am-table tbody, .am-table tr, .am-table td {
+      display: block; width: 100%;
+    }
+    .am-table tr {
+      background: #ffffffdb;
+      border: 1px solid #d8a42d2e;
+      border-radius: 3px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+    .am-table td {
+      padding: 4px 0;
+      border: none;
+
+      &.am-subject-cell {
+        white-space: normal;
+        max-width: none;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: $text-dark;
+        margin-bottom: 4px;
+      }
+      &.am-name-cell { font-size: 0.85rem; }
+      &.am-email-cell { font-size: 0.82rem; color: $text-light; }
+      &.am-actions { text-align: left; margin-top: 8px; }
+      &.am-actions .am-action-btn { margin-left: 0; margin-right: 6px; }
+    }
+  }
+
+  @keyframes am-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes am-pop {
+    from { opacity: 0; transform: translateY(8px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+}

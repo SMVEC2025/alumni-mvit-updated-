@@ -1,0 +1,4 @@
+# Local backend test harness — not shipped (see tests/README.md).
+/tests/
+/data/
+/.claude/

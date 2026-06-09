@@ -1,0 +1,1049 @@
+/* ── Loading ── */
+.alumni-detail-loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #37419a 70px, #f5f6fa 70px);
+}
+
+.alumni-detail-page--loading {
+  background-color: #f5f5f4;
+}
+
+.profile-skeleton-card,
+.profile-skeleton-section {
+  position: relative;
+}
+
+.profile-skeleton-cover,
+.profile-skeleton-avatar,
+.profile-skeleton-line,
+.profile-skeleton-pill,
+.profile-skeleton-grid span {
+  background: linear-gradient(90deg, #eceef5 0%, #f7f8fb 48%, #eceef5 100%);
+  background-size: 220% 100%;
+  animation: profile-skeleton-pulse 1.25s ease-in-out infinite;
+}
+
+.profile-skeleton-cover {
+  height: 200px;
+  width: 100%;
+}
+
+.profile-skeleton-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 4px solid #fbfbf8;
+  margin-top: -70px;
+  margin-left: 28px;
+}
+
+.profile-skeleton-avatar--nav {
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  border: 0;
+  display: inline-block;
+}
+
+.profile-skeleton-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px 28px 8px;
+}
+
+.profile-skeleton-line {
+  display: block;
+  width: 100%;
+  height: 14px;
+  border-radius: 999px;
+}
+
+.profile-skeleton-line--title {
+  width: min(360px, 80%);
+  height: 26px;
+}
+
+.profile-skeleton-line--subtitle {
+  width: min(520px, 88%);
+}
+
+.profile-skeleton-line--short {
+  width: min(240px, 58%);
+}
+
+.profile-skeleton-line--heading {
+  width: 180px;
+  height: 18px;
+  margin-bottom: 18px;
+}
+
+.profile-skeleton-line--search {
+  width: 70%;
+}
+
+.profile-skeleton-line--back {
+  width: 120px;
+}
+
+.profile-skeleton-pill {
+  display: inline-block;
+  width: 72px;
+  height: 18px;
+  border-radius: 999px;
+}
+
+.profile-skeleton-pill--wide {
+  width: 112px;
+}
+
+.profile-skeleton-search {
+  pointer-events: none;
+}
+
+.profile-skeleton-back {
+  pointer-events: none;
+}
+
+.profile-skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.profile-skeleton-grid span {
+  display: block;
+  min-height: 68px;
+  border-radius: 12px;
+}
+
+@keyframes profile-skeleton-pulse {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+/* ── Page Shell ── */
+.alumni-detail-page {
+  /* background: linear-gradient(to bottom, #37419a 70px, #f5f5f4 70px); */
+  background-color: #f5f5f4;
+  min-height: 100vh;
+  position: relative;
+  font-family: 'Futura PT', sans-serif;
+}
+
+.alumni-detail-header-bg {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: linear-gradient(135deg, #37419a, #4a55a8);
+  z-index: 0;
+}
+
+.alumni-detail-page .container {
+  position: relative;
+  z-index: 1;
+  padding-top: calc(70px + 1rem);
+  max-width: 1180px;
+
+  @media (max-width:600px) {
+    /* padding-top: 30px; */
+    padding: 30px 0 0 0;
+
+  }
+}
+
+/* ── Back Link ── */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(12, 44, 100, 0.85);
+  margin-bottom: 1.25rem;
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: #070f4f;
+}
+
+/* ── Two Column Layout ── */
+.profile-linkedin-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 20px;
+  padding-bottom: 3rem;
+  align-items: start;
+  margin-top: 0;
+}
+
+/* ── Cards ── */
+.profile-top-card,
+.profile-section-card,
+.sidebar-card {
+  background: #fbfbf8;
+  border-radius: 16px;
+  border: 1px solid rgba(128, 128, 128, 0.15);
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.profile-section-card,
+.sidebar-card {
+  padding: 20px 24px;
+  margin-bottom: 8px;
+}
+
+.profile-top-card {
+  margin-bottom: 8px;
+  padding-bottom: 20px;
+}
+
+/* ── Cover Photo ── */
+.profile-cover {
+  height: 200px;
+  background-color: rgba(128, 128, 128, 0.45);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.cover-upload-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  backdrop-filter: blur(4px);
+}
+
+.cover-upload-btn:hover {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.cover-upload-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Avatar ── */
+.profile-top-card .profile-avatar-wrapper {
+  position: relative;
+  margin-top: -70px;
+  margin-left: 28px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 4px solid #fbfbf8;
+  background: #edf1ff;
+  overflow: hidden;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.profile-avatar-wrapper--zoomable {
+  cursor: zoom-in;
+  touch-action: manipulation;
+}
+
+.profile-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.avatar-preview-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1400;
+  background: rgba(8, 10, 18, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.avatar-preview-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 1.7rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.avatar-preview-frame {
+  width: min(92vw, 560px);
+  max-height: 86vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-preview-frame img {
+  width: 100%;
+  height: auto;
+  max-height: 86vh;
+  object-fit: contain;
+  border-radius: 14px;
+  background: #0f111a;
+}
+
+.profile-avatar-fallback {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #054d5a, #022c34);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Futura PT', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 500;
+}
+
+/* ── Core Info ── */
+.profile-core-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 14px 28px 0;
+  gap: 2rem;
+}
+
+.profile-info-left {
+  flex: 1;
+}
+
+.profile-name {
+  font-family: 'Futura PT', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #222239;
+  margin: 0 0 4px;
+  line-height: 1.3;
+}
+
+.profile-headline {
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0 0 8px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.profile-status-chip {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 8px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(150, 20, 20, 0.35);
+  background: rgba(180, 30, 30, 0.08);
+  color: #8f1d1d;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.profile-location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.85rem;
+  color: #999;
+  margin: 0 0 6px;
+}
+
+.profile-location svg {
+  font-size: 0.95rem;
+}
+
+.profile-linkedin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.82rem;
+  color: #044d5a;
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.profile-linkedin-link:hover {
+  text-decoration: underline;
+}
+
+.profile-info-right {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 180px;
+}
+
+.profile-status-btn {
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #1f2937;
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 0.79rem;
+  font-weight: 600;
+  font-family: 'Futura PT', sans-serif;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  align-self: flex-start;
+  width: auto;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.profile-status-btn--disable {
+  border-color: #fecdd3;
+  background: #fff1f2;
+  color: #be123c;
+}
+
+.profile-status-btn--disable:hover:not(:disabled) {
+  background: #ffe4e6;
+}
+
+.profile-status-btn--enable {
+  border-color: #a7f3d0;
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.profile-status-btn--enable:hover:not(:disabled) {
+  background: #d1fae5;
+}
+
+.profile-status-btn--loading {
+  min-width: 132px;
+}
+
+.profile-status-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.profile-status-error {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #b91c1c;
+  max-width: 220px;
+}
+
+.profile-org-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.88rem;
+  color: #222239;
+  font-weight: 500;
+}
+
+.org-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.company-logo-img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: block;
+}
+
+.company-logo-img--lg {
+  width: 22px;
+  height: 22px;
+}
+
+.org-logo--company {
+  background: #044d5a15;
+  color: #044d5a;
+  border: 1px solid #044d5a25;
+}
+
+.org-logo--edu {
+   background: #044d5a15;
+  color: #044d5a;
+  border: 1px solid #044d5a25;
+}
+
+/* ── Action Buttons ── */
+.profile-action-bar {
+  display: flex;
+  gap: 10px;
+  padding: 18px 28px 22px;
+  flex-wrap: wrap;
+}
+
+.btn-profile {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 20px;
+  border-radius: 24px;
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  border: none;
+}
+
+.btn-profile-primary {
+  background: #044d5a;
+  color: #fff;
+}
+
+.btn-profile-primary:hover {
+  background: #b8882a;
+  color: #fff;
+}
+
+.btn-profile-outline {
+  background: transparent;
+  color: #37419a;
+  border: 2px solid rgba(55, 65, 154, 0.4);
+}
+
+.btn-profile-outline:hover {
+  background: rgba(55, 65, 154, 0.07);
+  border-color: #37419a;
+  color: #37419a;
+}
+
+/* ── Section Headings ── */
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Futura PT', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222239;
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0eeea;
+}
+
+.section-heading svg {
+  color: #044d5a;
+  font-size: 1.15rem;
+}
+
+/* ── Highlights ── */
+.highlights-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px 10px 0;
+  flex: 0 0 50%;
+  box-sizing: border-box;
+}
+
+.highlight-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f5f5f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  color: #888;
+  flex-shrink: 0;
+}
+
+.highlight-icon-wrap--education {
+  background: rgba(55, 65, 154, 0.08);
+  color: #044d5a;
+}
+
+.highlight-icon-wrap--industry {
+  background: rgba(46, 125, 50, 0.08);
+  color: #2e7d32;
+}
+
+.highlight-icon-wrap--experience {
+  background: rgba(216, 164, 45, 0.1);
+  color: #b8882a;
+}
+
+.highlight-icon-wrap--batch {
+  background: rgba(230, 81, 0, 0.08);
+  color: #e65100;
+}
+
+.highlight-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.highlight-text strong {
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #222239;
+  line-height: 1.3;
+}
+
+.highlight-text span {
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.76rem;
+  color: #999;
+}
+
+/* ── About ── */
+.about-text {
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: #555;
+  margin: 0;
+  white-space: pre-line;
+}
+
+/* ── Experience List ── */
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.experience-item {
+  display: flex;
+  gap: 14px;
+}
+
+.exp-logo {
+  width: 44px;
+  height: 44px;
+  background: #f5f5f3;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: #044d5a;
+  flex-shrink: 0;
+  border: 1px solid #ece9e2;
+}
+
+.exp-logo .company-logo-img {
+  width: 22px;
+  height: 22px;
+}
+
+.edu-logo {
+  background: linear-gradient(135deg, #044d5ab2, #044d5a);
+  color: #fff;
+  border: none;
+}
+
+.exp-details h4 {
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 2px;
+  color: #222239;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.exp-startup-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #044d5a;
+  background: #d6f1f6;
+  border: 1px solid #b6e1ea;
+  border-radius: 999px;
+  padding: 2px 8px;
+  line-height: 1.4;
+}
+
+.exp-company {
+  font-family: 'Futura PT', sans-serif;
+  color: #555;
+  font-weight: 500;
+  margin: 0 0 2px;
+  font-size: 0.85rem;
+}
+
+.exp-dates {
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.8rem;
+  color: #999;
+  margin: 0 0 6px;
+}
+
+.exp-desc {
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #555;
+  margin: 0;
+}
+
+.text-muted {
+  color: #999;
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* ── Sidebar ── */
+.sidebar-card {
+  margin-bottom: 8px;
+  position: sticky;
+}
+
+.sidebar-title {
+  font-family: 'Futura PT', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222239;
+  margin: 0 0 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0eeea;
+}
+
+/* ── Contact List ── */
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.contact-icon {
+  font-size: 1.15rem;
+  color: #044d5a;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-label {
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.contact-info a,
+.contact-info span {
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.88rem;
+  color: #222239;
+  text-decoration: none;
+  font-weight: 500;
+  word-break: break-all;
+  transition: color 0.2s;
+}
+
+.contact-info a:hover {
+  color: #044d5a;
+}
+
+/* ── Suggested Alumni ── */
+.suggested-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.suggested-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 4px;
+  border-bottom: 1px solid #f0eeea;
+  text-decoration: none;
+  color: inherit;
+  transition: none;
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+.suggested-item:last-child {
+  border-bottom: none;
+}
+
+.suggested-item:hover {
+  background: rgba(209, 209, 209, 0.171);
+}
+
+.suggested-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid #ece9e2;
+  box-shadow: none;
+}
+
+.suggested-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.suggested-avatar-fallback {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #e6c35c, #044d5a);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.suggested-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.suggested-info h4 {
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0 0 2px;
+  color: #222239;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggested-info p {
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.75rem;
+  color: #999;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggested-company-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.suggested-company-logo-wrap {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid #ebe8df;
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #b8882a;
+  flex-shrink: 0;
+}
+
+.suggested-company-logo-wrap .company-logo-img {
+  width: 11px;
+  height: 11px;
+}
+
+.suggested-company-logo-wrap svg {
+  font-size: 0.7rem;
+}
+
+.suggested-badge {
+  display: inline-block;
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  border: 1px solid #dfcda469;
+  background: #c9c7c325;
+  color: #464545;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 3px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .profile-linkedin-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-sidebar-column {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-cover {
+    height: 150px;
+  }
+
+  .profile-top-card .profile-avatar-wrapper {
+    width: 120px;
+    height: 120px;
+    margin-top: -60px;
+    margin-left: 20px;
+  }
+
+  .profile-core-info {
+    flex-direction: column;
+    padding: 12px 20px 0;
+    gap: 1rem;
+  }
+
+  .profile-info-right {
+    min-width: unset;
+  }
+
+  .profile-action-bar {
+    padding: 16px 20px 20px;
+  }
+
+  .btn-profile {
+    flex: 1;
+    justify-content: center;
+    min-width: 120px;
+  }
+
+  .highlight-item {
+    flex: 0 0 100%;
+  }
+
+  .profile-name {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .highlight-item {
+    flex: 0 0 100%;
+  }
+
+  .profile-linkedin-layout {
+    /* grid-template-columns: 1fr; */
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+
+  .sidebar-card:nth-child(2) {
+    display: none;
+
+  }
+
+  .alumni-detail-page {
+    background-color: #f5f6fa;
+  }
+
+  .profile-section-card {
+    border: none;
+    border-radius: 0;
+  }
+
+  .profile-sidebar-column {
+    .sidebar-card {
+      border: none;
+      width: calc(100vw);
+      border-radius: 0;
+    }
+  }
+
+  .back-link {
+    margin-left: 20px;
+  }
+
+  .profile-top-card {
+    border-radius: 0;
+  }
+}

@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Google+Sans+Flex&display=swap');
+
+// Arno Pro Display — body font
+@font-face {
+  font-family: 'Arno Pro Display';
+  src: url('/fonts/Arno Pro Display/Arno Pro Display.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Trajan Pro — brand title font
+
+
+// Futura PT — local fonts
+@font-face {
+  font-family: 'Futura PT';
+  src: url('/fonts/futura-pt/FuturaCyrillicLight.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Futura PT';
+  src: url('/fonts/futura-pt/FuturaCyrillicBook.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Futura PT';
+  src: url('/fonts/futura-pt/FuturaCyrillicMedium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Futura PT';
+  src: url('/fonts/futura-pt/FuturaCyrillicDemi.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Futura PT';
+  src: url('/fonts/futura-pt/FuturaCyrillicBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Variables
+$primary-color: #f2ad20;
+$secondary-color: #054d5a;
+$text-dark: #222239;
+$text-light: #555;
+$text-white: #fff;
+$bg-light: #f5f6fa;
+$bg-white: #fff;
+$border-color: #e0e0e0;
+$success-color: #26814c;
+$danger-color: #e74c3c;
+$shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+$shadow-hover: 0 6px 24px rgba(0, 0, 0, 0.12);
+$radius: 8px;
+$transition: all 0.3s ease;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arno Pro Display', serif;
+  font-weight: 400;
+  color: $text-dark;
+  background: $bg-white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --primary-color: #{$primary-color};
+  --secondary-color: #{$secondary-color};
+  --text-dark: #{$text-dark};
+  --text-light: #{$text-light};
+  --bg-light: #{$bg-light};
+}
+
+// Tokens
+@import './tokens';
+
+// Layouts
+@import './layouts.scss';
+
+// Components
+@import './components/Preloader.scss';
+@import './components/Navbar.scss';
+@import './components/Footer.scss';
+
+// Pages
+@import './pages/Home.scss';
+@import './pages/About.scss';
+@import './pages/Login.scss';
+@import './pages/Registration.scss';
+@import './pages/AlumniSpace.scss';
+@import './pages/Directory.scss';
+@import './pages/Events.scss';
+@import './pages/Contact.scss';
+@import './pages/SettingsPrivacy.scss';
+@import './pages/AdminMessages.scss';

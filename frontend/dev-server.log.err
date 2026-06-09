@@ -1,0 +1,728 @@
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+92 │ @import './tokens';
+   │         ^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\Main.scss 92:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+95 │ @import './layouts.scss';
+   │         ^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\Main.scss 95:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+98 │ @import './components/Preloader.scss';
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\Main.scss 98:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+99 │ @import './components/Navbar.scss';
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\Main.scss 99:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    ╷
+100 │ @import './components/Footer.scss';
+    │         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\Main.scss 100:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+46 │       background: darken($primary-color, 8%);
+   │                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\layouts.scss 46:19  @import
+    ..\..\..\..\public\scss\Main.scss 95:9      root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -14.8905109489%)
+color.adjust($color, $lightness: -8%)
+
+More info: https://sass-lang.com/d/color-functions
+
+   ╷
+46 │       background: darken($primary-color, 8%);
+   │                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\layouts.scss 46:19  @import
+    ..\..\..\..\public\scss\Main.scss 95:9      root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+56 │       background: darken($secondary-color, 8%);
+   │                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\layouts.scss 56:19  @import
+    ..\..\..\..\public\scss\Main.scss 95:9      root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -42.9473684211%)
+color.adjust($color, $lightness: -8%)
+
+More info: https://sass-lang.com/d/color-functions
+
+   ╷
+56 │       background: darken($secondary-color, 8%);
+   │                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\layouts.scss 56:19  @import
+    ..\..\..\..\public\scss\Main.scss 95:9      root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    ╷
+393 │         color: darken($secondary-color, 10%);
+    │                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\pages\Home.scss 393:16  @import
+    ..\..\..\..\public\scss\Main.scss 103:9         root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -53.6842105263%)
+color.adjust($color, $lightness: -10%)
+
+More info: https://sass-lang.com/d/color-functions
+
+    ╷
+393 │         color: darken($secondary-color, 10%);
+    │                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\pages\Home.scss 393:16  @import
+    ..\..\..\..\public\scss\Main.scss 103:9         root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    ╷
+582 │     color: darken($secondary-color, 10%);
+    │            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\pages\Home.scss 582:12  @import
+    ..\..\..\..\public\scss\Main.scss 103:9         root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -53.6842105263%)
+color.adjust($color, $lightness: -10%)
+
+More info: https://sass-lang.com/d/color-functions
+
+    ╷
+582 │     color: darken($secondary-color, 10%);
+    │            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\pages\Home.scss 582:12  @import
+    ..\..\..\..\public\scss\Main.scss 103:9         root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    ╷
+897 │         background: linear-gradient(135deg, $primary-color, lighten($primary-color, 12%));
+    │                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\pages\Home.scss 897:61  @import
+    ..\..\..\..\public\scss\Main.scss 103:9         root stylesheet
+
+DEPRECATION WARNING [color-functions]: lighten() is deprecated. Suggestions:
+
+color.scale($color, $lightness: 25.9322033898%)
+color.adjust($color, $lightness: 12%)
+
+More info: https://sass-lang.com/d/color-functions
+
+    ╷
+897 │         background: linear-gradient(135deg, $primary-color, lighten($primary-color, 12%));
+    │                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\pages\Home.scss 897:61  @import
+    ..\..\..\..\public\scss\Main.scss 103:9         root stylesheet
+
+WARNING: 54 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+[2m2:33:42 pm[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to load url /src/pages/contribute/Index.css (resolved id: D:/alumni-mvit/alumni-mvit/frontend/src/pages/contribute/Index.css) in D:/alumni-mvit/alumni-mvit/frontend/src/pages/contribute/Index.jsx. Does the file exist?
+[2m2:33:54 pm[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "./Index.css" from "src/pages/contribute/Index.jsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mD:/alumni-mvit/alumni-mvit/frontend/src/pages/contribute/Index.jsx[39m:21:7
+[33m  32 |    IconGift
+  33 |  } from "./icons";
+  34 |  import "./Index.css";
+     |          ^
+  35 |  const PAGE_SIZE = 10;
+  36 |  function timeAgo(iso) {[39m
+      at TransformPluginContext._formatLog (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28999:43)
+      at TransformPluginContext.error (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28996:14)
+      at normalizeUrl (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27119:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27177:32
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27145:4)
+      at async EnvironmentPluginContainer.transform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28797:14)
+      at async loadAndTransform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:22670:26)
+      at async viteTransformMiddleware (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:24542:20)
+[2m2:33:54 pm[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "./Index.css" from "src/pages/contribute/Index.jsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mD:/alumni-mvit/alumni-mvit/frontend/src/pages/contribute/Index.jsx[39m:21:7
+[33m  32 |    IconGift
+  33 |  } from "./icons";
+  34 |  import "./Index.css";
+     |          ^
+  35 |  const PAGE_SIZE = 10;
+  36 |  function timeAgo(iso) {[39m
+      at TransformPluginContext._formatLog (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28999:43)
+      at TransformPluginContext.error (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28996:14)
+      at normalizeUrl (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27119:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27177:32
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27145:4)
+      at async EnvironmentPluginContainer.transform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28797:14)
+      at async loadAndTransform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:22670:26)
+      at async viteTransformMiddleware (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:24542:20)
+[2m2:34:02 pm[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "./Index.css" from "src/pages/contribute/Index.jsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mD:/alumni-mvit/alumni-mvit/frontend/src/pages/contribute/Index.jsx[39m:21:7
+[33m  32 |    IconGift
+  33 |  } from "./icons";
+  34 |  import "./Index.css";
+     |          ^
+  35 |  const PAGE_SIZE = 10;
+  36 |  function timeAgo(iso) {[39m
+      at TransformPluginContext._formatLog (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28999:43)
+      at TransformPluginContext.error (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28996:14)
+      at normalizeUrl (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27119:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27177:32
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27145:4)
+      at async EnvironmentPluginContainer.transform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28797:14)
+      at async loadAndTransform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:22670:26)
+[2m2:34:02 pm[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "./Index.css" from "src/pages/contribute/Index.jsx". Does the file exist?
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mD:/alumni-mvit/alumni-mvit/frontend/src/pages/contribute/Index.jsx[39m:21:7
+[33m  32 |    IconGift
+  33 |  } from "./icons";
+  34 |  import "./Index.css";
+     |          ^
+  35 |  const PAGE_SIZE = 10;
+  36 |  function timeAgo(iso) {[39m
+[2m2:34:04 pm[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "./Index.css" from "src/pages/contribute/Index.jsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mD:/alumni-mvit/alumni-mvit/frontend/src/pages/contribute/Index.jsx[39m:21:7
+[33m  32 |    IconGift
+  33 |  } from "./icons";
+  34 |  import "./Index.css";
+     |          ^
+  35 |  const PAGE_SIZE = 10;
+  36 |  function timeAgo(iso) {[39m
+      at TransformPluginContext._formatLog (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28999:43)
+      at TransformPluginContext.error (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28996:14)
+      at normalizeUrl (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27119:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27177:32
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27145:4)
+      at async EnvironmentPluginContainer.transform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28797:14)
+      at async loadAndTransform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:22670:26)
+      at async viteTransformMiddleware (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:24542:20)
+[2m2:34:06 pm[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "./Index.css" from "src/pages/contribute/Index.jsx". Does the file exist?
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mD:/alumni-mvit/alumni-mvit/frontend/src/pages/contribute/Index.jsx[39m:21:7
+[33m  32 |    IconGift
+  33 |  } from "./icons";
+  34 |  import "./Index.css";
+     |          ^
+  35 |  const PAGE_SIZE = 10;
+  36 |  function timeAgo(iso) {[39m
+[2m2:34:06 pm[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "./Index.css" from "src/pages/contribute/Index.jsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mD:/alumni-mvit/alumni-mvit/frontend/src/pages/contribute/Index.jsx[39m:21:7
+[33m  32 |    IconGift
+  33 |  } from "./icons";
+  34 |  import "./Index.css";
+     |          ^
+  35 |  const PAGE_SIZE = 10;
+  36 |  function timeAgo(iso) {[39m
+      at TransformPluginContext._formatLog (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28999:43)
+      at TransformPluginContext.error (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28996:14)
+      at normalizeUrl (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27119:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27177:32
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27145:4)
+      at async EnvironmentPluginContainer.transform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28797:14)
+      at async loadAndTransform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:22670:26)
+      at async viteTransformMiddleware (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:24542:20)
+[2m2:34:09 pm[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "./Index.css" from "src/pages/contribute/Index.jsx". Does the file exist?
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mD:/alumni-mvit/alumni-mvit/frontend/src/pages/contribute/Index.jsx[39m:21:7
+[33m  32 |    IconGift
+  33 |  } from "./icons";
+  34 |  import "./Index.css";
+     |          ^
+  35 |  const PAGE_SIZE = 10;
+  36 |  function timeAgo(iso) {[39m
+[2m2:34:09 pm[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "./Index.css" from "src/pages/contribute/Index.jsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mD:/alumni-mvit/alumni-mvit/frontend/src/pages/contribute/Index.jsx[39m:21:7
+[33m  32 |    IconGift
+  33 |  } from "./icons";
+  34 |  import "./Index.css";
+     |          ^
+  35 |  const PAGE_SIZE = 10;
+  36 |  function timeAgo(iso) {[39m
+      at TransformPluginContext._formatLog (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28999:43)
+      at TransformPluginContext.error (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28996:14)
+      at normalizeUrl (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27119:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27177:32
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27145:4)
+      at async EnvironmentPluginContainer.transform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28797:14)
+      at async loadAndTransform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:22670:26)
+      at async viteTransformMiddleware (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:24542:20)
+[2m2:34:11 pm[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "./Index.css" from "src/pages/contribute/Index.jsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mD:/alumni-mvit/alumni-mvit/frontend/src/pages/contribute/Index.jsx[39m:21:7
+[33m  32 |    IconGift
+  33 |  } from "./icons";
+  34 |  import "./Index.css";
+     |          ^
+  35 |  const PAGE_SIZE = 10;
+  36 |  function timeAgo(iso) {[39m
+      at TransformPluginContext._formatLog (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28999:43)
+      at TransformPluginContext.error (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28996:14)
+      at normalizeUrl (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27119:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27177:32
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27145:4)
+      at async EnvironmentPluginContainer.transform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28797:14)
+      at async loadAndTransform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:22670:26)
+      at async viteTransformMiddleware (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:24542:20)
+[2m2:35:08 pm[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "./Index.css" from "src/pages/contribute/Index.jsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mD:/alumni-mvit/alumni-mvit/frontend/src/pages/contribute/Index.jsx[39m:21:7
+[33m  32 |    IconGift
+  33 |  } from "./icons";
+  34 |  import "./Index.css";
+     |          ^
+  35 |  const PAGE_SIZE = 10;
+  36 |  function timeAgo(iso) {[39m
+      at TransformPluginContext._formatLog (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28999:43)
+      at TransformPluginContext.error (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28996:14)
+      at normalizeUrl (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27119:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27177:32
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:27145:4)
+      at async EnvironmentPluginContainer.transform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:28797:14)
+      at async loadAndTransform (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:22670:26)
+      at async viteTransformMiddleware (file:///D:/alumni-mvit/alumni-mvit/frontend/node_modules/vite/dist/node/chunks/config.js:24542:20)
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+92 │ @import './tokens';
+   │         ^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\Main.scss 92:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+95 │ @import './layouts.scss';
+   │         ^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\Main.scss 95:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+98 │ @import './components/Preloader.scss';
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\Main.scss 98:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+99 │ @import './components/Navbar.scss';
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\Main.scss 99:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    ╷
+100 │ @import './components/Footer.scss';
+    │         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\Main.scss 100:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+46 │       background: darken($primary-color, 8%);
+   │                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\layouts.scss 46:19  @import
+    ..\..\..\..\public\scss\Main.scss 95:9      root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -14.8905109489%)
+color.adjust($color, $lightness: -8%)
+
+More info: https://sass-lang.com/d/color-functions
+
+   ╷
+46 │       background: darken($primary-color, 8%);
+   │                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\layouts.scss 46:19  @import
+    ..\..\..\..\public\scss\Main.scss 95:9      root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+56 │       background: darken($secondary-color, 8%);
+   │                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\layouts.scss 56:19  @import
+    ..\..\..\..\public\scss\Main.scss 95:9      root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -42.9473684211%)
+color.adjust($color, $lightness: -8%)
+
+More info: https://sass-lang.com/d/color-functions
+
+   ╷
+56 │       background: darken($secondary-color, 8%);
+   │                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\layouts.scss 56:19  @import
+    ..\..\..\..\public\scss\Main.scss 95:9      root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    ╷
+393 │         color: darken($secondary-color, 10%);
+    │                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\pages\Home.scss 393:16  @import
+    ..\..\..\..\public\scss\Main.scss 103:9         root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -53.6842105263%)
+color.adjust($color, $lightness: -10%)
+
+More info: https://sass-lang.com/d/color-functions
+
+    ╷
+393 │         color: darken($secondary-color, 10%);
+    │                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\pages\Home.scss 393:16  @import
+    ..\..\..\..\public\scss\Main.scss 103:9         root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    ╷
+582 │     color: darken($secondary-color, 10%);
+    │            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\pages\Home.scss 582:12  @import
+    ..\..\..\..\public\scss\Main.scss 103:9         root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -53.6842105263%)
+color.adjust($color, $lightness: -10%)
+
+More info: https://sass-lang.com/d/color-functions
+
+    ╷
+582 │     color: darken($secondary-color, 10%);
+    │            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\pages\Home.scss 582:12  @import
+    ..\..\..\..\public\scss\Main.scss 103:9         root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    ╷
+897 │         background: linear-gradient(135deg, $primary-color, lighten($primary-color, 12%));
+    │                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\pages\Home.scss 897:61  @import
+    ..\..\..\..\public\scss\Main.scss 103:9         root stylesheet
+
+DEPRECATION WARNING [color-functions]: lighten() is deprecated. Suggestions:
+
+color.scale($color, $lightness: 25.9322033898%)
+color.adjust($color, $lightness: 12%)
+
+More info: https://sass-lang.com/d/color-functions
+
+    ╷
+897 │         background: linear-gradient(135deg, $primary-color, lighten($primary-color, 12%));
+    │                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\pages\Home.scss 897:61  @import
+    ..\..\..\..\public\scss\Main.scss 103:9         root stylesheet
+
+WARNING: 54 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+92 │ @import './tokens';
+   │         ^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\Main.scss 92:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+95 │ @import './layouts.scss';
+   │         ^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\Main.scss 95:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+98 │ @import './components/Preloader.scss';
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\Main.scss 98:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+99 │ @import './components/Navbar.scss';
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\Main.scss 99:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    ╷
+100 │ @import './components/Footer.scss';
+    │         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\Main.scss 100:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+46 │       background: darken($primary-color, 8%);
+   │                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\layouts.scss 46:19  @import
+    ..\..\..\..\public\scss\Main.scss 95:9      root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -14.8905109489%)
+color.adjust($color, $lightness: -8%)
+
+More info: https://sass-lang.com/d/color-functions
+
+   ╷
+46 │       background: darken($primary-color, 8%);
+   │                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\layouts.scss 46:19  @import
+    ..\..\..\..\public\scss\Main.scss 95:9      root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+56 │       background: darken($secondary-color, 8%);
+   │                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\layouts.scss 56:19  @import
+    ..\..\..\..\public\scss\Main.scss 95:9      root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -42.9473684211%)
+color.adjust($color, $lightness: -8%)
+
+More info: https://sass-lang.com/d/color-functions
+
+   ╷
+56 │       background: darken($secondary-color, 8%);
+   │                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ..\..\..\..\public\scss\layouts.scss 56:19  @import
+    ..\..\..\..\public\scss\Main.scss 95:9      root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    ╷
+393 │         color: darken($secondary-color, 10%);
+    │                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\pages\Home.scss 393:16  @import
+    ..\..\..\..\public\scss\Main.scss 103:9         root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -53.6842105263%)
+color.adjust($color, $lightness: -10%)
+
+More info: https://sass-lang.com/d/color-functions
+
+    ╷
+393 │         color: darken($secondary-color, 10%);
+    │                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\pages\Home.scss 393:16  @import
+    ..\..\..\..\public\scss\Main.scss 103:9         root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    ╷
+582 │     color: darken($secondary-color, 10%);
+    │            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\pages\Home.scss 582:12  @import
+    ..\..\..\..\public\scss\Main.scss 103:9         root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -53.6842105263%)
+color.adjust($color, $lightness: -10%)
+
+More info: https://sass-lang.com/d/color-functions
+
+    ╷
+582 │     color: darken($secondary-color, 10%);
+    │            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\pages\Home.scss 582:12  @import
+    ..\..\..\..\public\scss\Main.scss 103:9         root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    ╷
+897 │         background: linear-gradient(135deg, $primary-color, lighten($primary-color, 12%));
+    │                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\pages\Home.scss 897:61  @import
+    ..\..\..\..\public\scss\Main.scss 103:9         root stylesheet
+
+DEPRECATION WARNING [color-functions]: lighten() is deprecated. Suggestions:
+
+color.scale($color, $lightness: 25.9322033898%)
+color.adjust($color, $lightness: 12%)
+
+More info: https://sass-lang.com/d/color-functions
+
+    ╷
+897 │         background: linear-gradient(135deg, $primary-color, lighten($primary-color, 12%));
+    │                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ..\..\..\..\public\scss\pages\Home.scss 897:61  @import
+    ..\..\..\..\public\scss\Main.scss 103:9         root stylesheet
+
+WARNING: 54 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+

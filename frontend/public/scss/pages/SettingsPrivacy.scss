@@ -1,0 +1,1021 @@
+// ─── Settings & Privacy ─────────────────────────────────────────────
+// Clean, app-style settings inspired by modern profile management UIs.
+// Minimal chrome, generous whitespace, pill inputs, subtle dividers.
+// Theme: navy ($secondary-color) + gold ($primary-color).
+
+$sp-navy:        #054d5a;
+$sp-navy-soft:   #066473;
+$sp-gold:        #f2ad20;
+$sp-ink:         #0f172a;
+$sp-ink-soft:    #1e293b;
+$sp-text:        #334155;
+$sp-mute:        #64748b;
+$sp-mute-soft:   #94a3b8;
+$sp-line:        #e5e7eb;
+$sp-line-soft:   #f1f3f5;
+$sp-surface:     #ffffff;
+$sp-surface-2:   #f8fafc;
+$sp-app-bg:      #f6f7f9;
+$sp-success:     #10b981;
+$sp-danger:      #dc2626;
+
+$sp-elev-card:   0 1px 2px rgba(15, 23, 42, 0.04);
+$sp-elev-pop:    0 4px 14px rgba(15, 23, 42, 0.06);
+$sp-ring-navy:   0 0 0 4px rgba(5, 77, 90, 0.12);
+
+@keyframes sp-fade-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sp-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes sp-pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba($sp-success, 0.5); }
+  50%      { box-shadow: 0 0 0 6px rgba($sp-success, 0); }
+}
+
+// ── Page shell ───────────────────────────────────────────────────────
+.settings-page {
+  min-height: 100vh;
+  padding: 96px 24px 48px;
+  background: $sp-app-bg;
+  font-family: 'Futura PT', 'Inter', sans-serif;
+  color: $sp-ink;
+
+  @media (max-width: 720px) {
+    padding: 76px 12px 32px;
+  }
+}
+
+.settings-shell {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+// ── Workspace card ───────────────────────────────────────────────────
+.settings-workspace {
+  position: relative;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  background: $sp-surface;
+  border: 1px solid $sp-line;
+  border-radius: 16px;
+  box-shadow: $sp-elev-card;
+  // Note: do not use overflow:hidden here — it breaks the sticky sidebar.
+  animation: sp-fade-up 0.3s ease both;
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+    border-radius: 14px;
+  }
+
+  @media (max-width: 720px) {
+    border-radius: 12px;
+  }
+}
+
+// ── Sidebar ──────────────────────────────────────────────────────────
+.settings-sidebar {
+  position: sticky;
+  top: 88px;
+  align-self: start;
+  max-height: calc(100vh - 104px);
+  padding: 28px 18px 22px;
+  border-right: 1px solid $sp-line;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  overflow-y: auto;
+  // Hide scrollbar chrome but keep scrollability
+  scrollbar-width: thin;
+  scrollbar-color: rgba($sp-mute-soft, 0.4) transparent;
+
+  &::-webkit-scrollbar { width: 6px; }
+  &::-webkit-scrollbar-thumb {
+    background: rgba($sp-mute-soft, 0.4);
+    border-radius: 999px;
+  }
+  &::-webkit-scrollbar-track { background: transparent; }
+
+  @media (max-width: 960px) {
+    position: static;
+    max-height: none;
+    border-radius: 0;
+    border-right: 0;
+    border-bottom: 1px solid $sp-line;
+    padding: 22px 18px;
+    overflow: visible;
+  }
+
+  @media (max-width: 720px) {
+    padding: 18px 14px;
+  }
+}
+
+.settings-sidebar-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 6px 4px;
+}
+
+.settings-sidebar-identity {
+  flex: 1 1 auto;
+  min-width: 0;
+
+  strong {
+    display: block;
+    color: $sp-ink;
+    font-size: 1.02rem;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  small {
+    display: block;
+    margin-top: 3px;
+    color: $sp-mute;
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+}
+
+.settings-avatar {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(150deg, $sp-navy 0%, $sp-navy-soft 100%);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+  }
+}
+
+.settings-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  a {
+    min-height: 40px;
+    padding: 0 12px;
+    border-radius: 10px;
+    color: $sp-mute;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    svg {
+      width: 17px;
+      height: 17px;
+      color: $sp-mute-soft;
+      flex-shrink: 0;
+      transition: color 0.15s ease;
+    }
+
+    &:hover {
+      background: $sp-line-soft;
+      color: $sp-ink;
+
+      svg { color: $sp-ink-soft; }
+    }
+  }
+
+  // Approximate "active" treatment via :target on adjacent panels —
+  // uses a runtime `is-active` class added in JS for robust scrollspy.
+  a.is-active {
+    background: rgba($sp-navy, 0.07);
+    color: $sp-navy;
+    font-weight: 600;
+
+    svg { color: $sp-navy; }
+  }
+
+  @media (max-width: 960px) {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+
+    a {
+      justify-content: center;
+      padding: 0 8px;
+      font-size: 0.86rem;
+    }
+  }
+
+  @media (max-width: 620px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.settings-sidebar-meta {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 6px 0;
+  border-top: 1px solid $sp-line-soft;
+
+  span {
+    color: $sp-mute;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.83rem;
+    line-height: 1.4;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    color: $sp-mute-soft;
+    flex-shrink: 0;
+  }
+}
+
+// ── Main pane ────────────────────────────────────────────────────────
+.settings-main {
+  padding: 32px 40px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 0;
+
+  @media (max-width: 960px) {
+    padding: 28px 28px 32px;
+  }
+
+  @media (max-width: 720px) {
+    padding: 22px 18px 26px;
+    gap: 26px;
+  }
+}
+
+.settings-main-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+
+  h1 {
+    margin: 0;
+    color: $sp-ink;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  p {
+    margin: 6px 0 0;
+    color: $sp-mute;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    max-width: 56ch;
+  }
+}
+
+// "Saving changes…" pill, top-right of the main head
+.settings-saving {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: $sp-success;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+
+  &::before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid rgba($sp-success, 0.25);
+    border-top-color: $sp-success;
+    animation: sp-spin 0.8s linear infinite;
+  }
+}
+
+.settings-loading {
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $sp-mute;
+  border: 1px solid $sp-line;
+  border-radius: 14px;
+  background: $sp-surface;
+  font-weight: 500;
+}
+
+// ── Panels — section blocks, no boxed cards ─────────────────────────
+.settings-panel {
+  scroll-margin-top: 100px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid $sp-line-soft;
+
+  &:last-of-type {
+    border-bottom: 0;
+    padding-bottom: 8px;
+  }
+}
+
+.settings-panel-heading {
+  margin-bottom: 20px;
+
+  h2 {
+    margin: 0;
+    color: $sp-ink;
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    margin: 6px 0 0;
+    color: $sp-mute;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    max-width: 60ch;
+  }
+}
+
+// Inline informational note (warning style) ──────────────────────────
+.settings-note {
+  margin-bottom: 16px;
+  padding: 12px 14px 12px 40px;
+  position: relative;
+  border: 1px solid #fde68a;
+  border-radius: 12px;
+  background: #fffbeb;
+  color: #854d0e;
+  font-size: 0.9rem;
+  line-height: 1.5;
+
+  &::before {
+    content: 'i';
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: $sp-gold;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  &--soft {
+    margin: 12px 0 0;
+    padding: 12px 14px;
+    border-color: $sp-line;
+    background: $sp-surface-2;
+    color: $sp-mute;
+
+    &::before { display: none; }
+  }
+}
+
+// ── Toggle row — label / desc on left, switch on right ──────────────
+.settings-toggle-row {
+  min-height: 64px;
+  padding: 16px 0;
+  border-top: 1px solid $sp-line-soft;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  &:first-of-type { border-top: 0; padding-top: 8px; }
+
+  > div {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .settings-toggle-copy strong {
+    display: block;
+    color: $sp-ink;
+    font-size: 0.96rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+
+  .settings-toggle-copy span {
+    display: block;
+    margin-top: 4px;
+    color: $sp-mute;
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+}
+
+.settings-switch {
+  position: relative;
+  width: 44px;
+  height: 26px;
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: #d1d5db;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+
+  span {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow:
+      0 1px 1px rgba(15, 23, 42, 0.06),
+      0 2px 4px rgba(15, 23, 42, 0.16);
+    transition: left 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &:hover:not(:disabled) {
+    background: darken(#d1d5db, 6%);
+  }
+
+  &.is-on {
+    background: $sp-navy;
+
+    span { left: 21px; }
+
+    &:hover:not(:disabled) {
+      background: $sp-navy-soft;
+    }
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $sp-ring-navy;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// ── Generic button system ──────────────────────────────────────────
+.settings-btn {
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font: inherit;
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  cursor: pointer;
+  transition: background 0.16s ease, color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+
+  svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  &--primary {
+    background: $sp-navy;
+    color: #fff;
+    border-color: $sp-navy;
+
+    &:hover:not(:disabled) {
+      background: $sp-navy-soft;
+      border-color: $sp-navy-soft;
+      box-shadow: 0 4px 10px rgba($sp-navy, 0.2);
+    }
+  }
+
+  &--ghost {
+    background: $sp-surface;
+    color: $sp-text;
+    border-color: $sp-line;
+
+    &:hover:not(:disabled) {
+      background: $sp-surface-2;
+      color: $sp-ink;
+      border-color: #cbd5e1;
+    }
+  }
+}
+
+// ── Profile Picture section ────────────────────────────────────────
+.settings-photo-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  @media (max-width: 620px) {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.settings-photo-preview {
+  flex: 0 0 auto;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(150deg, $sp-navy 0%, $sp-navy-soft 100%);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px $sp-line;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+  }
+}
+
+.settings-photo-actions {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.settings-photo-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.settings-photo-hint {
+  color: $sp-mute;
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+// ── Form rows (password) — top-label, soft-radius inputs ────────────
+.settings-password-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+
+  &--new-only {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  // 3-field variant only: first field (current password) spans full width.
+  // Scoped so the 2-field --new-only variant keeps both inputs equal width.
+  &:not(.settings-password-form--new-only) > label:nth-child(1):not(:only-of-type) {
+    grid-column: span 2;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  label span {
+    color: $sp-ink;
+    font-size: 0.86rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+
+  input {
+    width: 100%;
+    height: 44px;
+    border: 1px solid $sp-line;
+    border-radius: 10px;
+    padding: 0 14px;
+    color: $sp-ink;
+    background: $sp-surface;
+    font: inherit;
+    font-family: 'Futura PT', sans-serif;
+    font-size: 0.92rem;
+    outline: none;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+
+    &::placeholder {
+      color: $sp-mute-soft;
+      font-weight: 400;
+    }
+
+    &:hover {
+      border-color: #cbd5e1;
+    }
+
+    &:focus {
+      border-color: $sp-navy;
+      box-shadow: $sp-ring-navy;
+    }
+  }
+
+  button {
+    grid-column: 1 / -1;
+    justify-self: start;
+    height: 40px;
+    padding: 0 18px;
+    margin-top: 4px;
+    border: 1px solid $sp-navy;
+    border-radius: 8px;
+    background: $sp-navy;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font: inherit;
+    font-family: 'Futura PT', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.18s ease, box-shadow 0.18s ease;
+
+    svg { width: 16px; height: 16px; }
+
+    &:hover:not(:disabled) {
+      background: $sp-navy-soft;
+      border-color: $sp-navy-soft;
+      box-shadow: 0 4px 10px rgba($sp-navy, 0.2);
+    }
+
+    &:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+  }
+
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr;
+
+    &:not(.settings-password-form--new-only) > label:nth-child(1):not(:only-of-type) {
+      grid-column: span 1;
+    }
+  }
+}
+
+// ── Action list — clean rows with chevrons ──────────────────────────
+.settings-action-list {
+  margin-top: 16px;
+  border: 1px solid $sp-line;
+  border-radius: 14px;
+  background: $sp-surface;
+  overflow: hidden;
+}
+
+.settings-action-list button,
+.settings-action-list a,
+.settings-session-info {
+  width: 100%;
+  min-height: 68px;
+  padding: 14px 18px;
+  border: 0;
+  border-bottom: 1px solid $sp-line-soft;
+  background: transparent;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+  text-decoration: none;
+  font: inherit;
+  font-family: 'Futura PT', sans-serif;
+  position: relative;
+  transition: background 0.15s ease;
+
+  &:last-child { border-bottom: 0; }
+
+  > svg {
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+    border-radius: 10px;
+    background: $sp-surface-2;
+    color: $sp-navy;
+    flex-shrink: 0;
+  }
+
+  > span {
+    flex: 1;
+    min-width: 0;
+  }
+
+  strong {
+    display: block;
+    color: $sp-ink;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+
+  small {
+    display: block;
+    margin-top: 3px;
+    color: $sp-mute;
+    font-size: 0.86rem;
+    line-height: 1.4;
+  }
+}
+
+.settings-action-list button,
+.settings-action-list a {
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-top: 1.5px solid $sp-mute-soft;
+    border-right: 1.5px solid $sp-mute-soft;
+    transform: rotate(45deg);
+    flex-shrink: 0;
+    margin-left: 8px;
+    transition: border-color 0.15s ease, transform 0.18s ease;
+  }
+
+  &:hover:not(:disabled) {
+    background: $sp-surface-2;
+
+    &::after {
+      border-color: $sp-navy;
+      transform: rotate(45deg) translate(2px, -2px);
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+}
+
+.settings-session-info {
+  background: $sp-surface-2;
+
+  > svg {
+    background: rgba($sp-gold, 0.14);
+    color: #b07515;
+  }
+}
+
+// ── Devices ──────────────────────────────────────────────────────────
+.settings-devices {
+  margin-top: 24px;
+}
+
+.settings-devices-header {
+  margin-bottom: 14px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+
+  > div { min-width: 0; }
+
+  strong {
+    display: block;
+    color: $sp-ink;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+
+  small {
+    display: block;
+    margin-top: 4px;
+    color: $sp-mute;
+    font-size: 0.86rem;
+  }
+}
+
+.settings-session-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border: 1px solid $sp-line;
+  border-radius: 14px;
+  background: $sp-surface;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+
+  & + & { margin-top: 10px; }
+
+  
+
+  &.is-current {
+    border: none;
+  }
+
+  @media (max-width: 620px) {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+.settings-session-icon {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: $sp-surface-2;
+  color: $sp-navy;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.18rem;
+  flex-shrink: 0;
+
+  .is-current & {
+    background: rgba($sp-success, 0.1);
+    color: darken($sp-success, 6%);
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: -1px;
+      bottom: -1px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: $sp-success;
+      border: 2.5px solid #fff;
+      animation: sp-pulse-dot 2.4s ease-in-out infinite;
+    }
+  }
+}
+
+.settings-session-copy {
+  flex: 1;
+  min-width: 0;
+
+  strong {
+    color: $sp-ink;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  small {
+    display: block;
+    margin-top: 3px;
+    color: $sp-mute;
+    font-size: 0.86rem;
+    line-height: 1.4;
+
+  }
+}
+
+.settings-session-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+
+  span {
+    height: 22px;
+    padding: 0 9px;
+    border-radius: 999px;
+    background: rgba($sp-success, 0.02);
+    color: darken($sp-success, 6%);
+    border: 1px solid rgba($sp-success, 0.22);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: capitalize;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+    &::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: $sp-success;
+    }
+  }
+}
+
+.settings-session-card button {
+  height: 36px;
+  padding: 0 16px;
+  border: 1px solid $sp-line;
+  border-radius: 999px;
+  background: $sp-surface;
+  color: $sp-text;
+  font: inherit;
+  font-family: 'Futura PT', sans-serif;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background: $sp-ink;
+    color: #fff;
+    border-color: $sp-ink;
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  .is-current &:hover:not(:disabled) {
+    background: $sp-danger;
+    color: #fff;
+    border-color: $sp-danger;
+  }
+}
+
+// ── Documentation cards ─────────────────────────────────────────────
+.settings-docs {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+
+  article {
+    padding: 18px 20px;
+    border: 1px solid $sp-line;
+    border-radius: 14px;
+    background: $sp-surface;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+
+    &:hover {
+      border-color: #cbd5e1;
+      box-shadow: $sp-elev-pop;
+    }
+  }
+
+  h3 {
+    margin: 0 0 10px;
+    color: $sp-ink;
+    font-size: 0.98rem;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+  }
+
+  p {
+    margin: 0 0 8px;
+    color: $sp-text;
+    font-size: 0.9rem;
+    line-height: 1.6;
+
+    &:last-child { margin-bottom: 0; }
+  }
+
+  @media (max-width: 780px) {
+    grid-template-columns: 1fr;
+  }
+}
