@@ -160,46 +160,29 @@ function Login() {
       return
     }
 
-    // Move to OTP step immediately.
+    // Move to OTP step immediately (the SMS sends in the background).
     setOtpPurpose(purpose)
     setStep('otp')
     setOtpDigits(Array(OTP_LENGTH).fill(''))
     setOtpResendSeconds(0)
     setOtpToken('')
 
-    // TEMPORARY OTP bypass: do NOT send an SMS. Show the OTP screen and let the
-    // user log in with the master code "000000" (verified server-side).
-    // To restore real OTP, delete this block and uncomment the sendOtp logic below.
-    setIsSendingOtp(false)
-    setOtpToken('bypass')
-    setMessage('Enter 000000 to continue.')
-    setTimeout(() => focusOtpInput(0), 0)
-    return
-
-    /* eslint-disable no-unreachable */
     setIsSendingOtp(true)
     try {
       const response = await sendOtp(cleaned)
-
-      // OTP bypass mode (temporary): no SMS — log in straight away.
-      if (response?.bypass) {
-        const verifyResult = await verifyOtp('000000', cleaned, response.challengeToken || 'bypass')
-        const redirectPath = await getRedirectPath(verifyResult.user)
-        navigate(redirectPath, { replace: true })
-        return
-      }
-
       setOtpToken(response?.challengeToken || '')
       setOtpResendSeconds(OTP_RESEND_SECONDS)
       setMessage(successMessage || 'OTP sent successfully.')
 
       setTimeout(() => focusOtpInput(0), 0)
     } catch (err) {
+      // Surface the real reason (e.g. provider rate-limit "OTP limit reached")
+      // and send the user back to the number step so they can retry/change it.
       setError(err.message || 'Failed to send OTP. Please try again.')
+      setStep('mobile')
     } finally {
       setIsSendingOtp(false)
     }
-    /* eslint-enable no-unreachable */
   }
 
   const handleContinue = async (e) => {
