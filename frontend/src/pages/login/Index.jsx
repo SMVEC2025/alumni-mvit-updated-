@@ -41,6 +41,24 @@ async function getRedirectPath(user) {
   return registered ? '/alumni-space' : '/complete-profile'
 }
 
+// Turn an OTP-send failure into a clean, user-friendly message. The provider's
+// raw rate-limit text ("OTP limit reached Pls try after 24hrs") is replaced with
+// proper copy; network errors get a connectivity hint; anything else falls back
+// to the backend's message.
+function otpSendErrorMessage(err) {
+  const status = err?.status
+  const code = err?.code
+  const raw = String(err?.message || '')
+
+  if (status === 429 || code === 'RATE_LIMITED' || /limit reached|try after|too many/i.test(raw)) {
+    return 'You\'ve requested too many OTPs for this number. Please wait a while and try again.'
+  }
+  if (status === 0 || code === 'NETWORK') {
+    return 'Couldn\'t reach the server. Check your connection and try again.'
+  }
+  return raw || 'Failed to send OTP. Please try again.'
+}
+
 function Login() {
   const navigate = useNavigate()
   const otpRefs = useRef([])
@@ -160,26 +178,23 @@ function Login() {
       return
     }
 
-    // Move to OTP step immediately (the SMS sends in the background).
-    setOtpPurpose(purpose)
-    setStep('otp')
-    setOtpDigits(Array(OTP_LENGTH).fill(''))
-    setOtpResendSeconds(0)
-    setOtpToken('')
-
+    // Send the OTP FIRST, then advance to the OTP screen only on success — so a
+    // failure (e.g. rate limit) keeps the user on the number step with the error
+    // visible, instead of flashing the OTP screen and bouncing back.
+    setError('')
     setIsSendingOtp(true)
     try {
       const response = await sendOtp(cleaned)
+
+      setOtpPurpose(purpose)
+      setOtpDigits(Array(OTP_LENGTH).fill(''))
       setOtpToken(response?.challengeToken || '')
       setOtpResendSeconds(OTP_RESEND_SECONDS)
-      setMessage(successMessage || 'OTP sent successfully.')
-
+      setStep('otp')
+      setMessage(successMessage || `OTP sent to ${cleaned}.`)
       setTimeout(() => focusOtpInput(0), 0)
     } catch (err) {
-      // Surface the real reason (e.g. provider rate-limit "OTP limit reached")
-      // and send the user back to the number step so they can retry/change it.
-      setError(err.message || 'Failed to send OTP. Please try again.')
-      setStep('mobile')
+      setError(otpSendErrorMessage(err))
     } finally {
       setIsSendingOtp(false)
     }
