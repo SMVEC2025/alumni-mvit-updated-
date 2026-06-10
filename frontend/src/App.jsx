@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { Navigate, Route, Routes, useLocation, useNavigate, useNavigationType } from 'react-router-dom'
 import { SnackbarProvider } from 'notistack'
 import CustomToast from './components/CustomToast'
@@ -6,21 +6,26 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Preloader from './components/Preloader'
 import ErrorBoundary from './components/ErrorBoundary'
+// Home is the landing page — keep it eager so first paint is instant. Every
+// other route is code-split with React.lazy so a first-time visitor only
+// downloads the chunk for the page they actually open (the directory page in
+// particular pulls in the heavy country-state-city data, ~1MB, which now loads
+// only when that route is visited).
 import Home from './pages/home/Index'
-import About from './pages/about/Index'
-import Login from './pages/login/Index'
-import CompleteProfile from './pages/completeProfile/Index'
-import AlumniSpace from './pages/alumniSpace/Index'
-import Directory from './pages/directory/Index'
-import AlumniDetail from './pages/alumniDetail/Index'
-import Blogs from './pages/blogs/Index'
-import BlogView from './pages/blogView/Index'
-import Contribute from './pages/contribute/Index'
-import Notifications from './pages/notifications/Index'
-import Contact from './pages/contact/Index'
-import SettingsPrivacy from './pages/settingsPrivacy/Index'
-import AdminMessages from './pages/adminMessages/Index'
-import FacultyRegistration from './pages/facultyRegistration/Index'
+const About = lazy(() => import('./pages/about/Index'))
+const Login = lazy(() => import('./pages/login/Index'))
+const CompleteProfile = lazy(() => import('./pages/completeProfile/Index'))
+const AlumniSpace = lazy(() => import('./pages/alumniSpace/Index'))
+const Directory = lazy(() => import('./pages/directory/Index'))
+const AlumniDetail = lazy(() => import('./pages/alumniDetail/Index'))
+const Blogs = lazy(() => import('./pages/blogs/Index'))
+const BlogView = lazy(() => import('./pages/blogView/Index'))
+const Contribute = lazy(() => import('./pages/contribute/Index'))
+const Notifications = lazy(() => import('./pages/notifications/Index'))
+const Contact = lazy(() => import('./pages/contact/Index'))
+const SettingsPrivacy = lazy(() => import('./pages/settingsPrivacy/Index'))
+const AdminMessages = lazy(() => import('./pages/adminMessages/Index'))
+const FacultyRegistration = lazy(() => import('./pages/facultyRegistration/Index'))
 import { onAuthChange, verifySession } from './lib/auth'
 import { isStudentRegistered } from './lib/studentRegistration'
 import { safeSessionStorageGet } from './lib/safeStorage'
@@ -30,6 +35,16 @@ import { useNavbarContext } from './context/navbarState'
 import { useInactivityLogout } from './hooks/useInactivityLogout'
 
 const INACTIVITY_TIMEOUT_MS = 30 * 60 * 1000
+
+// Shown while a lazily-loaded route chunk is fetched. Minimal + centered so the
+// brief flash between routes is unobtrusive (reuses the global spinner styles).
+function RouteFallback() {
+  return (
+    <div className="reg-page-loading" style={{ minHeight: '60vh' }}>
+      <div className="reg-page-spinner" aria-hidden="true" />
+    </div>
+  )
+}
 
 function App() {
   return (
@@ -221,6 +236,7 @@ function AppContent() {
             {/* Keyed by path so navigating to another route clears a crashed
                 page's error state and lets the new page mount cleanly. */}
             <ErrorBoundary key={location.pathname}>
+            <Suspense fallback={<RouteFallback />}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
@@ -240,6 +256,7 @@ function AppContent() {
               <Route path="/admin/messages" element={<AdminMessages />} />
               <Route path="/faculty-register" element={<FacultyRegistration />} />
             </Routes>
+            </Suspense>
             </ErrorBoundary>
             <Footer />
           </main>

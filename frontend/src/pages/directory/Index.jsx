@@ -1,4 +1,4 @@
-﻿import { useEffect, useState, useMemo, useCallback, useRef } from 'react'
+﻿import { useEffect, useState, useMemo, useCallback, useRef, memo } from 'react'
 import {
   HiAcademicCap,
   HiOfficeBuilding,
@@ -580,10 +580,12 @@ function Directory() {
     }
   }, [viewer, searchInput, filters, staffVisibilityFilter, sortBy, view, setDirectoryCache])
 
-  const getInitials = (row) => {
+  // Stable identity so the memoized PersonCard/PersonRow don't re-render just
+  // because this function was recreated on the parent render.
+  const getInitials = useCallback((row) => {
     const f = (row.first_name ?? '').charAt(0).toUpperCase()
     return f || '?'
-  }
+  }, [])
 
   const getFullName = useCallback(
     (row) => [row.first_name, row.last_name].filter(Boolean).join(' ') || 'Unknown',
@@ -617,7 +619,7 @@ function Directory() {
     [getCurrentRole],
   )
 
-  const getLocation = (row) => [row.city, row.state].filter(Boolean).join(', ') || null
+  const getLocation = useCallback((row) => [row.city, row.state].filter(Boolean).join(', ') || null, [])
 
   const displayedAlumni = alumni
   const totalPages = Math.max(Math.ceil(totalCount / DIRECTORY_PAGE_SIZE), 1)
@@ -696,7 +698,7 @@ function Directory() {
     mobileFilterNav,
   })
 
-  const handleStaffVisibilityToggle = async (row) => {
+  const handleStaffVisibilityToggle = useCallback(async (row) => {
     if (!isStaff || !row?.id) return
 
     const nextDisabledState = !row.is_disabled
@@ -745,7 +747,7 @@ function Directory() {
         : 'Alumni profile enabled successfully.',
       { variant: 'success', autoHideDuration: 2600 },
     )
-  }
+  }, [isStaff, enqueueSnackbar, setDirectoryCache])
 
   if (authReady && !hasDirectoryAccess) {
     return (
@@ -1216,7 +1218,7 @@ function DirectoryPagination({
   )
 }
 
-function PersonCard({
+const PersonCard = memo(function PersonCard({
   row,
   protectedImageUrls,
   getInitials,
@@ -1304,9 +1306,9 @@ function PersonCard({
       </div>
     </Link>
   )
-}
+})
 
-function PersonRow({
+const PersonRow = memo(function PersonRow({
   row,
   protectedImageUrls,
   getInitials,
@@ -1380,9 +1382,9 @@ function PersonRow({
       </div>
     </Link>
   )
-}
+})
 
-function SkeletonGrid({ view }) {
+const SkeletonGrid = memo(function SkeletonGrid({ view }) {
   if (view === 'list') {
     return (
       <div className="dir-list">
@@ -1412,7 +1414,7 @@ function SkeletonGrid({ view }) {
       ))}
     </div>
   )
-}
+})
 
 export default Directory
 

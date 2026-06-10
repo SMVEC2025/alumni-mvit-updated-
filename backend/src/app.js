@@ -1,5 +1,6 @@
 import express from 'express'
 import helmet from 'helmet'
+import compression from 'compression'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
@@ -25,6 +26,11 @@ export function buildApp() {
 
   // 1) Security headers.
   app.use(helmet())
+
+  // 1b) gzip/brotli compression for responses. JSON list payloads (directory,
+  // feeds) compress ~50-70%. threshold skips tiny bodies where the overhead
+  // isn't worth it. Honours the client's Accept-Encoding.
+  app.use(compression({ threshold: 1024 }))
 
   // 2) CORS — explicit allowlist only, credentials enabled for cookies.
   app.use(

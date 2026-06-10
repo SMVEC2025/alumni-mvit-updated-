@@ -156,13 +156,15 @@ export async function updatePost(viewer, id, data) {
 }
 
 export async function deletePost(viewer, id) {
-  const doc = await Post.findById(id)
+  // Only the author id is needed for the ownership check before delete — no need
+  // to pull the full post body/tags/cover into memory.
+  const doc = await Post.findById(id).select('authorId').lean()
   if (!doc) throw Errors.notFound('Post not found.')
   const isStaff = viewer.role === 'staff' || viewer.role === 'admin'
   const isAuthor = String(doc.authorId) === String(viewer.userId)
   if (!isAuthor && !isStaff) throw Errors.forbidden('You can only delete your own posts.')
 
-  await Promise.all([doc.deleteOne(), PostLike.deleteMany({ postId: id })])
+  await Promise.all([Post.deleteOne({ _id: id }), PostLike.deleteMany({ postId: id })])
 }
 
 // Staff-only moderation: hide / unhide.

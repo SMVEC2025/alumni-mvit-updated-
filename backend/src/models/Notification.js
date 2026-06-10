@@ -40,5 +40,8 @@ const notificationSchema = new mongoose.Schema(
 notificationSchema.index({ recipientId: 1, createdAt: -1 })
 // Unread-count query.
 notificationSchema.index({ recipientId: 1, read: 1 })
+// Like-notification dedup (notifyPostLiked): runs on EVERY like to collapse
+// repeats, so make it a precise lookup instead of scanning a user's feed.
+notificationSchema.index({ recipientId: 1, postId: 1, actorId: 1, type: 1, read: 1 })
 
 export const Notification = mongoose.model('Notification', notificationSchema)

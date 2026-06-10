@@ -52,7 +52,12 @@ export async function revokeAllForUser(userId, exceptJti = null) {
 }
 
 export async function listSessions(userId) {
-  return Session.find({ userId }).sort({ lastSeenAt: -1 }).lean()
+  // Project only the fields the sessions API actually returns (see auth.routes
+  // /sessions) — skips loading ip/userAgent/token-hash etc.
+  return Session.find({ userId })
+    .select('_id browser platform deviceName lastSeenAt createdAt')
+    .sort({ lastSeenAt: -1 })
+    .lean()
 }
 
 export async function touchSession(jti) {

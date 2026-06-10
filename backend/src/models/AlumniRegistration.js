@@ -84,6 +84,10 @@ alumniRegistrationSchema.index({ email: 1 }, { unique: true, sparse: true, colla
 alumniRegistrationSchema.index({ phone: 1 }, { unique: true, sparse: true })
 alumniRegistrationSchema.index({ department: 1, yearOfCompletion: 1 })
 alumniRegistrationSchema.index({ createdAt: -1 })
+// Directory sort options (directoryService.buildSort): without these, sorting by
+// name or company is a full collection scan + in-memory sort.
+alumniRegistrationSchema.index({ name: 1 })
+alumniRegistrationSchema.index({ 'workExperiences.company': 1, createdAt: -1 })
 // Text index powers directory keyword search (name + work + city).
 alumniRegistrationSchema.index({
   name: 'text',

@@ -29,13 +29,16 @@ router.get(
   })
 )
 
-// GET /directory/filters — dropdown metadata.
+// GET /directory/filters — dropdown metadata (departments, years). Changes
+// slowly and is role-scoped, so allow a short PRIVATE cache (per-user browser
+// only, never a shared/CDN cache) to cut repeat fetches on navigation.
 router.get(
   '/directory/filters',
   readLimiter,
   requireAuth,
   asyncHandler(async (req, res) => {
     const data = await fetchFilterMetadata(req.auth)
+    res.set('Cache-Control', 'private, max-age=300')
     ok(res, data)
   })
 )
