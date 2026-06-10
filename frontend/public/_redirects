@@ -1,0 +1,4 @@
+# Cloudflare Pages SPA fallback: serve index.html for all client-side routes so
+# deep links / refreshes (e.g. /directory/alumni/:id, /alumni-space) don't 404.
+# React Router handles routing on the client.
+/*    /index.html   200

@@ -62,7 +62,7 @@ See [.env.example](./.env.example). Key ones:
 
 | Var | Purpose |
 |---|---|
-| `MONGODB_URI` | Mongo connection string (`mongodb://127.0.0.1:27017/smvec_alumni`) |
+| `MONGODB_URI` | Mongo connection string (`mongodb://127.0.0.1:27017/mvit_alumni`) |
 | `JWT_ACCESS_SECRET` / `JWT_REFRESH_SECRET` | Token signing secrets (long, random, distinct) |
 | `CORS_ALLOWED_ORIGINS` | Comma-separated frontend origins |
 | `OTP_API_URL` / `OTP_API_AUTH_KEY` | External OTP provider + its `x-api-key` |

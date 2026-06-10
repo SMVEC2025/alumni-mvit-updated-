@@ -1,0 +1,17 @@
+# What NOT to upload when deploying via `gcloud run deploy --source .`
+# (Cloud Build uses this; mirrors .dockerignore plus build-context concerns.)
+.git
+.gitignore
+node_modules
+.env
+.env.*
+!.env.example
+*.log
+dev-server.log
+dev-server.log.err
+dev.log
+dev.log.err
+.DS_Store
+README.md
+API_SPEC.md
+DEPLOY_BACKEND.md

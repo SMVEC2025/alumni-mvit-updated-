@@ -37,17 +37,16 @@ import { User } from '../models/User.js'
 
 const router = Router()
 
-// In OTP_BYPASS mode no SMS is sent, so the strict SMS-protecting limiters
-// (3/10min send, 8/15min verify) only serve to lock out legitimate logins.
-// Fall back to the generic write limiter (30/min) in that case; in production
-// (bypass off) the strict limiters apply exactly as before.
-const otpSendLimiter = env.OTP_BYPASS ? writeLimiter : otpLimiter
-const otpVerifyLimiter = env.OTP_BYPASS ? writeLimiter : authLimiter
-
+// SameSite=None requires Secure (browsers drop None cookies without it), so
+// force Secure whenever SameSite is 'none' as well as in production. `domain` is
+// set only when COOKIE_DOMAIN is configured (e.g. ".yourdomain.com") so the
+// refresh cookie is shared across app./api. subdomains; left undefined locally
+// for a host-only cookie. See config/env.js.
 const refreshCookieOpts = {
   httpOnly: true,
-  secure: env.isProd,
-  sameSite: 'strict',
+  secure: env.isProd || env.cookieSameSite === 'none',
+  sameSite: env.cookieSameSite,
+  domain: env.cookieDomain,
   path: '/api/auth',
   maxAge: 30 * 24 * 60 * 60 * 1000,
 }
@@ -65,14 +64,10 @@ function clearAuthCookies(res) {
 // ── OTP: send ──
 router.post(
   '/otp/send',
-  otpSendLimiter,
+  otpLimiter,
   validate(otpSendSchema),
   asyncHandler(async (req, res) => {
     const { mobileNumber } = req.body
-    // Bypass mode: skip the SMS provider, hand back a placeholder challenge.
-    if (env.OTP_BYPASS) {
-      return ok(res, { challengeToken: 'bypass', expiresInSec: env.OTP_TTL_SEC, bypass: true })
-    }
     const result = await sendOtp(mobileNumber)
     ok(res, {
       challengeToken: result.challengeToken,
@@ -84,16 +79,11 @@ router.post(
 // ── OTP: verify → login ──
 router.post(
   '/otp/verify',
-  otpVerifyLimiter,
+  authLimiter,
   validate(otpVerifySchema),
   asyncHandler(async (req, res) => {
     const { mobileNumber, otp, challengeToken } = req.body
-    // TEMPORARY bypass: the master code "000000" logs in without contacting the
-    // SMS provider. Works regardless of OTP_BYPASS so it applies in production.
-    // Remove this `otp !== '000000'` guard to re-enable real OTP verification.
-    if (!env.OTP_BYPASS && otp !== '000000') {
-      await verifyOtp(mobileNumber, otp, challengeToken)
-    }
+    await verifyOtp(mobileNumber, otp, challengeToken)
 
     const user = await ensureUser(mobileNumber)
     const { accessToken, refreshToken } = await issueTokens(user, req)

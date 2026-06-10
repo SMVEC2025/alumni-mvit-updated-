@@ -1,0 +1,75 @@
+# Render Blueprint for the SMVEC/MVIT Alumni backend (Express API).
+# Placed at the REPO ROOT so Render's Blueprint feature can find it; the service
+# itself is rooted in backend/ (this is a monorepo: frontend/ + backend/).
+#
+# Deploy: Render Dashboard → New → Blueprint → connect this repo → it reads this
+# file. Secrets marked `sync: false` are entered in the dashboard, never here.
+services:
+  - type: web
+    name: mvit-alumni-api
+    runtime: node
+    plan: free
+    region: singapore        # closest free region to India; change if preferred
+    rootDir: backend         # monorepo: build/run inside backend/
+    buildCommand: npm ci
+    startCommand: npm start   # node src/server.js (reads PORT from env, binds 0.0.0.0)
+    healthCheckPath: /api/health
+    autoDeploy: true          # redeploy on push to the connected branch
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: OTP_BYPASS
+        value: "false"
+      - key: OTP_TTL_SEC
+        value: "300"
+      - key: ACCESS_TOKEN_TTL
+        value: 15m
+      - key: REFRESH_TOKEN_TTL
+        value: 30d
+      # ── Set the rest in the Render dashboard (Environment tab) ──
+      # Secrets / values that must NOT live in git:
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_ACCESS_SECRET
+        sync: false
+      - key: JWT_REFRESH_SECRET
+        sync: false
+      - key: CONTACT_ENC_KEY
+        sync: false
+      - key: OTP_API_URL
+        sync: false
+      - key: OTP_API_AUTH_KEY
+        sync: false
+      - key: ADMIN_MOBILE_NUMBERS
+        sync: false
+      # Frontend origin(s) — set to your Pages URL once known, e.g.
+      # https://mvit-alumni.pages.dev
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+      # Cross-subdomain cookies are NOT needed yet (frontend on *.pages.dev,
+      # API on *.onrender.com — different sites). Use SameSite=None so the
+      # refresh cookie still flows cross-site; leave COOKIE_DOMAIN unset.
+      - key: COOKIE_SAMESITE
+        value: none
+      # Object storage (Cloudflare R2) — set if image uploads are used.
+      - key: S3_ENDPOINT
+        sync: false
+      - key: S3_ACCESS_KEY_ID
+        sync: false
+      - key: S3_SECRET_ACCESS_KEY
+        sync: false
+      - key: S3_BUCKET
+        sync: false
+      - key: S3_PUBLIC_BASE_URL
+        sync: false
+      # SMTP (contact emails) — optional.
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        sync: false
+      - key: SMTP_USER_NOTIFY
+        sync: false
+      - key: SMTP_PASS_NOTIFY
+        sync: false
+      - key: COORDINATOR_EMAIL
+        sync: false

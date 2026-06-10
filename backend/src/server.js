@@ -6,9 +6,11 @@ async function start() {
   await connectMongo()
   const app = buildApp()
 
-  const server = app.listen(env.PORT, () => {
-    console.log(`🚀 SMVEC Alumni API listening on http://localhost:${env.PORT}`)
-    console.log(`   env=${env.NODE_ENV}  mongo=${env.MONGODB_URI}`)
+  // Bind to 0.0.0.0 (all interfaces) — required by Cloud Run / containers, which
+  // route external traffic to the container's published port. Cloud Run injects
+  // PORT (8080); locally it falls back to env default (4000).
+  const server = app.listen(env.PORT, '0.0.0.0', () => {
+    console.log(`🚀 SMVEC Alumni API listening on port ${env.PORT} (env=${env.NODE_ENV})`)
   })
 
   const shutdown = async (signal) => {

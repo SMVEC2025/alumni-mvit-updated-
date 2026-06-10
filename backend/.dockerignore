@@ -1,0 +1,21 @@
+# Keep the image lean and free of secrets / dev-only files.
+node_modules
+npm-debug.log*
+.env
+.env.*
+!.env.example
+*.log
+dev-server.log
+dev-server.log.err
+dev.log
+dev.log.err
+.git
+.gitignore
+Dockerfile
+.dockerignore
+.gcloudignore
+scripts
+README.md
+API_SPEC.md
+DEPLOY_BACKEND.md
+.DS_Store
