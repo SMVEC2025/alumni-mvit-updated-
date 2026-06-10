@@ -10,7 +10,10 @@ import { Errors, HttpError } from '../utils/httpError.js'
 //   POST {OTP_API_URL}/api/verify-otp { otp, mobile_number, token, college }
 //     → { status:"success" } | { status:"error", message }
 
-const COLLEGE = 'mvit'
+// The external OTP provider only has SMS delivery configured (DLT sender +
+// template) for the 'smvec' college code. Sending 'mvit' is accepted by the API
+// but the SMS is never delivered, so this must stay 'smvec'.
+const COLLEGE = 'smvec'
 
 function providerUrl(path) {
   const base = env.OTP_API_URL.replace(/\/+$/, '')
