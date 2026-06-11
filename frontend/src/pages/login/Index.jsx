@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useImperativeHandle, useRef, useState, forwardRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   checkMobileStatus,
@@ -14,6 +14,7 @@ import { useSnackbar } from 'notistack'
 
 const OTP_LENGTH = 6
 const OTP_RESEND_SECONDS = 59
+const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || ''
 
 const EyeIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -28,6 +29,73 @@ const EyeOffIcon = () => (
     <line x1="1" y1="1" x2="23" y2="23" />
   </svg>
 )
+
+// Cloudflare Turnstile widget. Renders explicitly so React owns its lifecycle.
+// Calls onVerify(token) when solved, onExpire()/onError() to clear a stale token.
+// The parent gets a reset() handle (via ref) to refresh the single-use token
+// after each OTP send. Renders nothing when no site key is configured, so the
+// login flow still works in environments without Turnstile set up.
+const TurnstileWidget = forwardRef(function TurnstileWidget(
+  { onVerify, onExpire, onError },
+  ref
+) {
+  const containerRef = useRef(null)
+  const widgetIdRef = useRef(null)
+
+  useImperativeHandle(ref, () => ({
+    reset() {
+      if (window.turnstile && widgetIdRef.current !== null) {
+        window.turnstile.reset(widgetIdRef.current)
+      }
+    },
+  }), [])
+
+  // Keep the latest callbacks in a ref so the render effect can stay [] — it must
+  // run exactly ONCE. Re-running it would render a second widget (double-solve).
+  const cbRef = useRef({ onVerify, onExpire, onError })
+  useEffect(() => {
+    cbRef.current = { onVerify, onExpire, onError }
+  }, [onVerify, onExpire, onError])
+
+  useEffect(() => {
+    if (!TURNSTILE_SITE_KEY) return undefined
+
+    let cancelled = false
+    // The render is deferred by a tick. In React 18 StrictMode (dev), the effect
+    // runs twice with a synchronous mount→unmount→remount: deferring lets the
+    // first pass's cleanup cancel its pending render BEFORE it fires, so the
+    // widget is created exactly once — no double "Verifying…". The delay also
+    // covers the async/defer Turnstile script not being ready yet.
+    const render = () => {
+      if (cancelled || widgetIdRef.current !== null) return
+      if (!window.turnstile || !containerRef.current) {
+        timer = setTimeout(render, 150)
+        return
+      }
+      widgetIdRef.current = window.turnstile.render(containerRef.current, {
+        sitekey: TURNSTILE_SITE_KEY,
+        action: 'turnstile-spin-v1',
+        callback: (token) => cbRef.current.onVerify?.(token),
+        'expired-callback': () => cbRef.current.onExpire?.(),
+        'error-callback': () => cbRef.current.onError?.(),
+      })
+    }
+    let timer = setTimeout(render, 0)
+
+    return () => {
+      cancelled = true
+      clearTimeout(timer)
+      if (window.turnstile && widgetIdRef.current !== null) {
+        window.turnstile.remove(widgetIdRef.current)
+        widgetIdRef.current = null
+      }
+    }
+    // Empty deps: render once on mount. Callbacks are read from cbRef.
+  }, [])
+
+  if (!TURNSTILE_SITE_KEY) return null
+  return <div className="turnstile-widget" ref={containerRef} />
+})
 
 async function getRedirectPath(user) {
   if (user?.role === 'staff') {
@@ -79,7 +147,22 @@ function Login() {
   const [error, setError] = useState('')
   const [, setMessage] = useState('')
   const [otpResendSeconds, setOtpResendSeconds] = useState(0)
+  const [turnstileToken, setTurnstileToken] = useState('')
+  const turnstileRef = useRef(null)
   const isBusy = isLoading || isBootstrapping
+
+  // Stable callbacks so the Turnstile widget isn't torn down on every render.
+  const handleTurnstileVerify = useCallback((token) => setTurnstileToken(token || ''), [])
+  const handleTurnstileExpire = useCallback(() => setTurnstileToken(''), [])
+  const handleTurnstileError = useCallback(() => setTurnstileToken(''), [])
+
+  // The Turnstile token is single-use: after each send (success OR failure) the
+  // backend consumes it, so reset the widget and clear local state to force a
+  // fresh challenge for the next attempt.
+  const resetTurnstile = useCallback(() => {
+    setTurnstileToken('')
+    turnstileRef.current?.reset()
+  }, [])
 
   useEffect(() => {
     let mounted = true
@@ -171,7 +254,7 @@ function Login() {
     return status
   }
 
-  const startOtpFlow = async (purpose, successMessage) => {
+  const startOtpFlow = async (purpose, successMessage, captchaToken) => {
     const cleaned = normalizeMobile(mobileNumber)
     if (!/^\d{10}$/.test(cleaned)) {
       setError('Please enter a valid 10-digit mobile number.')
@@ -184,7 +267,7 @@ function Login() {
     setError('')
     setIsSendingOtp(true)
     try {
-      const response = await sendOtp(cleaned)
+      const response = await sendOtp(cleaned, captchaToken)
 
       setOtpPurpose(purpose)
       setOtpDigits(Array(OTP_LENGTH).fill(''))
@@ -193,8 +276,13 @@ function Login() {
       setStep('otp')
       setMessage(successMessage || `OTP sent to ${cleaned}.`)
       setTimeout(() => focusOtpInput(0), 0)
+      // Success: we leave the mobile step and the widget unmounts, so do NOT
+      // reset it here — resetting would trigger a second, pointless "Verifying…".
     } catch (err) {
       setError(otpSendErrorMessage(err))
+      // Failure: we stay on the mobile step. The Turnstile token is single-use
+      // and already consumed by the attempt, so mint a fresh one for the retry.
+      resetTurnstile()
     } finally {
       setIsSendingOtp(false)
     }
@@ -204,6 +292,12 @@ function Login() {
     e.preventDefault()
     resetMessages()
 
+    // Require the captcha to be solved before requesting an OTP (when configured).
+    if (TURNSTILE_SITE_KEY && !turnstileToken) {
+      setError('Please complete the captcha to continue.')
+      return
+    }
+
     setIsLoading(true)
     try {
       const status = await loadMobileStatus()
@@ -212,7 +306,7 @@ function Login() {
         ? 'OTP sent successfully. Verify OTP to login.'
         : 'OTP sent successfully. Verify OTP to continue.'
       setIsLoading(false)
-      await startOtpFlow(purpose, successMessage)
+      await startOtpFlow(purpose, successMessage, turnstileToken)
     } catch (err) {
       setError(err.message || 'Unable to continue right now.')
     } finally {
@@ -239,6 +333,14 @@ function Login() {
   const handleForgotPassword = async () => {
     resetMessages()
 
+    // Reachable from the mobile step (captcha visible) and the password step
+    // (already captcha-verified via the pass cookie). Require a solved captcha
+    // only when on the mobile step with the widget showing and no token yet.
+    if (TURNSTILE_SITE_KEY && step === 'mobile' && !turnstileToken) {
+      setError('Please complete the captcha to continue.')
+      return
+    }
+
     setIsLoading(true)
     try {
       const status = await loadMobileStatus()
@@ -249,7 +351,7 @@ function Login() {
       }
 
       setIsLoading(false)
-      await startOtpFlow('forgot-password', 'OTP sent for password reset.')
+      await startOtpFlow('forgot-password', 'OTP sent for password reset.', turnstileToken)
     } catch (err) {
       setError(err.message || 'Unable to start forgot password flow.')
       setIsLoading(false)
@@ -552,7 +654,24 @@ function Login() {
                       />
                     </div>
 
-                    <button type="submit" className="btn-submit" disabled={isLoading}>
+                    {/* Captcha appears once a full 10-digit number is entered,
+                        and must be solved before an OTP can be requested. */}
+                    {TURNSTILE_SITE_KEY && /^\d{10}$/.test(mobileNumber) && (
+                      <div className="form-group turnstile-group">
+                        <TurnstileWidget
+                          ref={turnstileRef}
+                          onVerify={handleTurnstileVerify}
+                          onExpire={handleTurnstileExpire}
+                          onError={handleTurnstileError}
+                        />
+                      </div>
+                    )}
+
+                    <button
+                      type="submit"
+                      className="btn-submit"
+                      disabled={isLoading || (TURNSTILE_SITE_KEY && /^\d{10}$/.test(mobileNumber) && !turnstileToken)}
+                    >
                       Continue
                     </button>
 
