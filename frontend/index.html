@@ -5,6 +5,11 @@
     <link rel="icon" type="image/svg+xml" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MVIT | Alumni network</title>
+    <!-- Cloudflare Turnstile — bot protection on the login OTP request.
+         render=explicit: the script does NOT auto-scan/auto-render the page; the
+         widget is created exactly once by our explicit window.turnstile.render()
+         call (prevents the double "Verifying…"). -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
   </head>
   <body>
     <div id="root"></div>

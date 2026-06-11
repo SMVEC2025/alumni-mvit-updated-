@@ -66,15 +66,20 @@ const TurnstileWidget = forwardRef(function TurnstileWidget(
     // first pass's cleanup cancel its pending render BEFORE it fires, so the
     // widget is created exactly once — no double "Verifying…". The delay also
     // covers the async/defer Turnstile script not being ready yet.
+    let rendering = false
     const render = () => {
-      if (cancelled || widgetIdRef.current !== null) return
+      // Guard against a second render: once one widget exists (or one is being
+      // created) never call render() again — that's what showed two challenges.
+      if (cancelled || rendering || widgetIdRef.current !== null) return
       if (!window.turnstile || !containerRef.current) {
         timer = setTimeout(render, 150)
         return
       }
+      rendering = true
       widgetIdRef.current = window.turnstile.render(containerRef.current, {
         sitekey: TURNSTILE_SITE_KEY,
         action: 'turnstile-spin-v1',
+        appearance: 'always', // always show the widget (the "I'm not a robot" box)
         callback: (token) => cbRef.current.onVerify?.(token),
         'expired-callback': () => cbRef.current.onExpire?.(),
         'error-callback': () => cbRef.current.onError?.(),
