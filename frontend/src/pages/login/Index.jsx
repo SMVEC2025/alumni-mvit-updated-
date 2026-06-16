@@ -310,7 +310,6 @@ function Login() {
       const successMessage = status.has_password
         ? 'OTP sent successfully. Verify OTP to login.'
         : 'OTP sent successfully. Verify OTP to continue.'
-      setIsLoading(false)
       await startOtpFlow(purpose, successMessage, turnstileToken)
     } catch (err) {
       setError(err.message || 'Unable to continue right now.')
@@ -325,12 +324,11 @@ function Login() {
     setIsLoading(true)
     try {
       const status = await loadMobileStatus()
-      setIsLoading(false)
-
       const purpose = status.has_password ? 'otp-login' : 'create-password'
       await startOtpFlow(purpose, 'OTP sent successfully.')
     } catch (err) {
       setError(err.message || 'Unable to send OTP.')
+    } finally {
       setIsLoading(false)
     }
   }
@@ -355,10 +353,10 @@ function Login() {
         return
       }
 
-      setIsLoading(false)
       await startOtpFlow('forgot-password', 'OTP sent for password reset.', turnstileToken)
     } catch (err) {
       setError(err.message || 'Unable to start forgot password flow.')
+    } finally {
       setIsLoading(false)
     }
   }

@@ -3,7 +3,7 @@ import { asyncHandler } from '../utils/asyncHandler.js'
 import { ok, Errors } from '../utils/httpError.js'
 import { validate } from '../middleware/validate.js'
 import { requireAuth } from '../middleware/auth.js'
-import { readLimiter } from '../middleware/rateLimit.js'
+import { readLimiter, userReadLimiter } from '../middleware/rateLimit.js'
 import { directoryQuerySchema } from '../validators/schemas.js'
 import { fetchDirectoryPage, fetchFilterMetadata } from '../services/directoryService.js'
 import { toAlumniView, toAlumniViewList } from '../utils/privacy.js'
@@ -16,6 +16,7 @@ router.get(
   '/directory',
   readLimiter,
   requireAuth,
+  userReadLimiter,
   validate(directoryQuerySchema, 'query'),
   asyncHandler(async (req, res) => {
     const result = await fetchDirectoryPage(req.auth, req.query)
@@ -36,6 +37,7 @@ router.get(
   '/directory/filters',
   readLimiter,
   requireAuth,
+  userReadLimiter,
   asyncHandler(async (req, res) => {
     const data = await fetchFilterMetadata(req.auth)
     res.set('Cache-Control', 'private, max-age=300')
@@ -48,6 +50,7 @@ router.get(
   '/alumni/:id',
   readLimiter,
   requireAuth,
+  userReadLimiter,
   asyncHandler(async (req, res) => {
     const doc = await AlumniRegistration.findById(req.params.id).lean()
     if (!doc) throw Errors.notFound('Profile not found.')

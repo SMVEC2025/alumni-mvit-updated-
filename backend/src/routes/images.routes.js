@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid'
 import { asyncHandler } from '../utils/asyncHandler.js'
 import { ok, Errors } from '../utils/httpError.js'
 import { requireAuth } from '../middleware/auth.js'
-import { writeLimiter } from '../middleware/rateLimit.js'
+import { writeLimiter, userWriteLimiter } from '../middleware/rateLimit.js'
 import { detectImageType, uploadImage } from '../services/storageService.js'
 
 const router = Router()
@@ -20,6 +20,7 @@ router.post(
   '/images',
   writeLimiter,
   requireAuth,
+  userWriteLimiter,
   upload.single('file'),
   asyncHandler(async (req, res) => {
     const kind = String(req.body?.kind || 'profile').toLowerCase()

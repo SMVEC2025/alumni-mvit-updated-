@@ -24,8 +24,25 @@ export function buildApp() {
   // Behind a proxy (nginx/render) so req.ip + rate-limit see the real client.
   app.set('trust proxy', 1)
 
-  // 1) Security headers.
-  app.use(helmet())
+  // 1) Security headers + Content-Security-Policy.
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'none'"],
+          scriptSrc: ["'none'"],
+          styleSrc: ["'none'"],
+          imgSrc: ["'none'"],
+          connectSrc: env.corsOrigins,
+          frameAncestors: ["'none'"],
+          formAction: ["'none'"],
+          baseUri: ["'none'"],
+          objectSrc: ["'none'"],
+        },
+      },
+      crossOriginResourcePolicy: { policy: 'cross-origin' },
+    })
+  )
 
   // 1b) gzip/brotli compression for responses. JSON list payloads (directory,
   // feeds) compress ~50-70%. threshold skips tiny bodies where the overhead

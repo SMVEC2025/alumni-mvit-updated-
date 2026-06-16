@@ -1,19 +1,25 @@
 // Central API client for the SMVEC Alumni backend.
-// - Bearer access token stored in localStorage (mirrored to sessionStorage).
-// - Refresh token is an httpOnly cookie managed by the server.
+// - Auth is cookie-based only; the browser never persists a bearer token.
+// - Refresh/access cookies are httpOnly and managed by the server.
 // - On 401, transparently tries one /auth/refresh then retries the request.
 import {
-  safeLocalStorageGet,
-  safeLocalStorageSet,
   safeLocalStorageRemove,
-  safeSessionStorageGet,
-  safeSessionStorageSet,
   safeSessionStorageRemove,
 } from './safeStorage'
 
 const API_BASE = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000/api').replace(/\/+$/, '')
 const ACCESS_KEY = 'smvec_access_token'
 const REQUEST_TIMEOUT_MS = 15000
+
+// One-time cleanup of the old persistent bearer token. Existing browsers may
+// still have this legacy key from previous builds; remove it eagerly so an XSS
+// can't exfiltrate a stale session token from Web Storage.
+function purgeLegacyAccessToken() {
+  safeLocalStorageRemove(ACCESS_KEY)
+  safeSessionStorageRemove(ACCESS_KEY)
+}
+
+purgeLegacyAccessToken()
 
 export class ApiError extends Error {
   constructor(message, status, code, details) {
@@ -26,18 +32,15 @@ export class ApiError extends Error {
 }
 
 export function getAccessToken() {
-  return safeLocalStorageGet(ACCESS_KEY) || safeSessionStorageGet(ACCESS_KEY) || null
+  return null
 }
 
-export function setAccessToken(token) {
-  if (!token) return clearAccessToken()
-  safeLocalStorageSet(ACCESS_KEY, token)
-  safeSessionStorageSet(ACCESS_KEY, token)
+export function setAccessToken() {
+  purgeLegacyAccessToken()
 }
 
 export function clearAccessToken() {
-  safeLocalStorageRemove(ACCESS_KEY)
-  safeSessionStorageRemove(ACCESS_KEY)
+  purgeLegacyAccessToken()
 }
 
 function buildUrl(path, query) {
@@ -61,10 +64,9 @@ async function tryRefresh() {
         method: 'POST',
         credentials: 'include',
       })
-      const data = await res.json().catch(() => ({}))
-      if (res.ok && data?.data?.accessToken) {
-        setAccessToken(data.data.accessToken)
-        return data.data.accessToken
+      if (res.ok) {
+        clearAccessToken()
+        return true
       }
       clearAccessToken()
       return null
@@ -81,9 +83,7 @@ async function rawRequest(method, path, { body, query, headers = {}, isForm = fa
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS)
 
-  const token = getAccessToken()
   const finalHeaders = { ...headers }
-  if (token) finalHeaders.Authorization = `Bearer ${token}`
   if (!isForm && body !== undefined) finalHeaders['Content-Type'] = 'application/json'
 
   let res

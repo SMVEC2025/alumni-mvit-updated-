@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { HiThumbUp, HiArrowLeft } from 'react-icons/hi'
 import { fetchPublicPost } from '../../lib/postsApi'
 import { useProtectedImageUrl } from '../../hooks/useProtectedImageUrl'
-import { getAccessToken } from '../../lib/apiClient'
+import { getUser, onAuthChange } from '../../lib/auth'
 import '../blogs/Index.css'
 import './Index.css'
 
@@ -25,7 +25,7 @@ function BlogView() {
   const { id } = useParams()
   const [post, setPost] = useState(null)
   const [state, setState] = useState('loading') // loading | ready | notfound | error
-  const isLoggedIn = Boolean(getAccessToken())
+  const [isLoggedIn, setIsLoggedIn] = useState(() => Boolean(getUser()))
 
   useEffect(() => {
     let mounted = true
@@ -37,6 +37,8 @@ function BlogView() {
       })
     return () => { mounted = false }
   }, [id])
+
+  useEffect(() => onAuthChange((user) => setIsLoggedIn(Boolean(user))), [])
 
   return (
     <div className="blogview-page page-content">

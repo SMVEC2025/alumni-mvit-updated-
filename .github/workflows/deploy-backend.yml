@@ -1,0 +1,79 @@
+name: Deploy Backend (Cloud Run)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/deploy-backend.yml'
+
+  # Allow manual rollback: pick a previous SHA from the Actions run list and
+  # re-run it — Cloud Run will roll back to that image revision.
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Build & deploy to Cloud Run
+    runs-on: ubuntu-latest
+    # Required for Workload Identity Federation (keyless auth).
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # ── Authenticate to Google Cloud via Workload Identity ─────────────────
+      # Set up Workload Identity Federation in your GCP project:
+      #   https://github.com/google-github-actions/auth#workload-identity-federation-through-a-service-account
+      # Then add these repo secrets:
+      #   GCP_WORKLOAD_IDENTITY_PROVIDER — e.g. projects/123/locations/global/workloadIdentityPools/...
+      #   GCP_SERVICE_ACCOUNT            — e.g. deployer@my-project.iam.gserviceaccount.com
+      - uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      # ── Build & push image to Artifact Registry ────────────────────────────
+      # Repo secret required:
+      #   GCP_PROJECT_ID  — your Google Cloud project ID
+      #   GCP_REGION      — e.g. asia-south1
+      #   AR_REPO         — Artifact Registry repo name, e.g. alumni-api
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker ${{ secrets.GCP_REGION }}-docker.pkg.dev --quiet
+
+      - name: Build & push
+        run: |
+          IMAGE="${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.AR_REPO }}/backend:${{ github.sha }}"
+          docker build -t "$IMAGE" backend/
+          docker push "$IMAGE"
+          echo "IMAGE=$IMAGE" >> "$GITHUB_ENV"
+
+      # ── Deploy to Cloud Run ────────────────────────────────────────────────
+      # Repo secret required:
+      #   CLOUD_RUN_SERVICE — Cloud Run service name, e.g. smvec-alumni-api
+      #
+      # Secrets are injected from Secret Manager (not here) — the service's
+      # Cloud Run YAML / terraform already binds them. Only the new image is
+      # updated on each deploy.
+      - name: Deploy
+        run: |
+          gcloud run deploy "${{ secrets.CLOUD_RUN_SERVICE }}" \
+            --image "$IMAGE" \
+            --region "${{ secrets.GCP_REGION }}" \
+            --platform managed \
+            --quiet
+
+      # ── Smoke-test the deployed revision ──────────────────────────────────
+      # Repo secret required:
+      #   BACKEND_URL — public URL of the Cloud Run service, e.g. https://api.smvec.ac.in
+      - name: Health check
+        run: |
+          STATUS=$(curl -sf -o /dev/null -w "%{http_code}" "${{ secrets.BACKEND_URL }}/api/health")
+          if [ "$STATUS" != "200" ]; then
+            echo "Health check failed: HTTP $STATUS"
+            exit 1
+          fi
+          echo "Health check passed (HTTP $STATUS)"

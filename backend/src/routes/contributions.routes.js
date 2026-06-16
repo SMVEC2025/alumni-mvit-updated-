@@ -3,7 +3,7 @@ import { asyncHandler } from '../utils/asyncHandler.js'
 import { ok, Errors } from '../utils/httpError.js'
 import { validate } from '../middleware/validate.js'
 import { requireAuth, requireRole } from '../middleware/auth.js'
-import { readLimiter, writeLimiter } from '../middleware/rateLimit.js'
+import { readLimiter, writeLimiter, userWriteLimiter, userReadLimiter } from '../middleware/rateLimit.js'
 import {
   contributionCreateSchema,
   contributionUpdateSchema,
@@ -41,6 +41,7 @@ router.get(
   '/contributions',
   readLimiter,
   requireAuth,
+  userReadLimiter,
   validate(contributionListQuerySchema, 'query'),
   asyncHandler(async (req, res) => {
     ok(res, await listContributions(req.auth, req.query))
@@ -52,6 +53,7 @@ router.get(
   '/contributions/:id',
   readLimiter,
   requireAuth,
+  userReadLimiter,
   asyncHandler(async (req, res) => {
     ok(res, { contribution: await getContribution(req.auth, req.params.id) })
   })
@@ -62,6 +64,7 @@ router.get(
   '/contributions/:id/interested',
   readLimiter,
   requireAuth,
+  userReadLimiter,
   asyncHandler(async (req, res) => {
     ok(res, await listInterested(req.auth, req.params.id))
   })
@@ -72,6 +75,7 @@ router.post(
   '/contributions',
   writeLimiter,
   requireAuth,
+  userWriteLimiter,
   asyncHandler(requireRegistered),
   validate(contributionCreateSchema),
   asyncHandler(async (req, res) => {
@@ -84,6 +88,7 @@ router.patch(
   '/contributions/:id',
   writeLimiter,
   requireAuth,
+  userWriteLimiter,
   validate(contributionUpdateSchema),
   asyncHandler(async (req, res) => {
     ok(res, { contribution: await updateContribution(req.auth, req.params.id, req.body) })
@@ -95,6 +100,7 @@ router.delete(
   '/contributions/:id',
   writeLimiter,
   requireAuth,
+  userWriteLimiter,
   asyncHandler(async (req, res) => {
     await deleteContribution(req.auth, req.params.id)
     ok(res, { success: true })
@@ -106,6 +112,7 @@ router.post(
   '/contributions/:id/review',
   writeLimiter,
   requireAuth,
+  userWriteLimiter,
   requireRole('staff', 'admin'),
   validate(contributionReviewSchema),
   asyncHandler(async (req, res) => {
@@ -119,6 +126,7 @@ router.post(
   '/contributions/:id/interest',
   writeLimiter,
   requireAuth,
+  userWriteLimiter,
   validate(contributionInterestSchema),
   asyncHandler(async (req, res) => {
     ok(res, await expressInterest(req.auth.userId, req.params.id, req.body.note))
@@ -130,6 +138,7 @@ router.post(
   '/contributions/:id/withdraw-interest',
   writeLimiter,
   requireAuth,
+  userWriteLimiter,
   asyncHandler(async (req, res) => {
     ok(res, await withdrawInterest(req.auth.userId, req.params.id))
   })

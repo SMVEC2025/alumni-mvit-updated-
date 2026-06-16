@@ -3,7 +3,7 @@ import { asyncHandler } from '../utils/asyncHandler.js'
 import { ok, Errors } from '../utils/httpError.js'
 import { validate } from '../middleware/validate.js'
 import { requireAuth, requireRole } from '../middleware/auth.js'
-import { readLimiter, writeLimiter } from '../middleware/rateLimit.js'
+import { readLimiter, writeLimiter, userWriteLimiter, userReadLimiter } from '../middleware/rateLimit.js'
 import { alumniUpdateSchema, completeRegistrationSchema } from '../validators/schemas.js'
 import { toAlumniView } from '../utils/privacy.js'
 import { completeRegistration } from '../services/registrationService.js'
@@ -18,6 +18,7 @@ router.get(
   '/me/registration',
   readLimiter,
   requireAuth,
+  userReadLimiter,
   asyncHandler(async (req, res) => {
     const doc = await AlumniRegistration.findOne({ userId: req.auth.userId }).lean()
     ok(res, { registered: Boolean(doc), alumni: doc ? toAlumniView(doc, req.auth) : null })
@@ -33,6 +34,7 @@ router.post(
   '/me/complete-registration',
   writeLimiter,
   requireAuth,
+  userWriteLimiter,
   validate(completeRegistrationSchema),
   asyncHandler(async (req, res) => {
     const registration = await completeRegistration(req.auth.userId, req.body)
@@ -86,6 +88,7 @@ router.patch(
   '/alumni/:id',
   writeLimiter,
   requireAuth,
+  userWriteLimiter,
   validate(alumniUpdateSchema),
   asyncHandler(async (req, res) => {
     const doc = await AlumniRegistration.findById(req.params.id)
@@ -110,6 +113,7 @@ router.post(
   '/alumni/:id/disable',
   writeLimiter,
   requireAuth,
+  userWriteLimiter,
   requireRole('staff', 'admin'),
   asyncHandler(async (req, res) => {
     const doc = await AlumniRegistration.findByIdAndUpdate(req.params.id, { isDisabled: true }, { new: true }).lean()
@@ -124,6 +128,7 @@ router.post(
   '/alumni/:id/enable',
   writeLimiter,
   requireAuth,
+  userWriteLimiter,
   requireRole('staff', 'admin'),
   asyncHandler(async (req, res) => {
     const doc = await AlumniRegistration.findByIdAndUpdate(req.params.id, { isDisabled: false }, { new: true }).lean()

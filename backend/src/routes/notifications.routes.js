@@ -4,7 +4,7 @@ import { asyncHandler } from '../utils/asyncHandler.js'
 import { ok } from '../utils/httpError.js'
 import { validate } from '../middleware/validate.js'
 import { requireAuth } from '../middleware/auth.js'
-import { readLimiter, writeLimiter } from '../middleware/rateLimit.js'
+import { readLimiter, writeLimiter, userWriteLimiter, userReadLimiter } from '../middleware/rateLimit.js'
 import {
   listNotifications,
   getUnreadCount,
@@ -25,6 +25,7 @@ router.get(
   '/notifications',
   readLimiter,
   requireAuth,
+  userReadLimiter,
   validate(listQuerySchema, 'query'),
   asyncHandler(async (req, res) => {
     ok(res, await listNotifications(req.auth.userId, req.query))
@@ -36,6 +37,7 @@ router.get(
   '/notifications/unread-count',
   readLimiter,
   requireAuth,
+  userReadLimiter,
   asyncHandler(async (req, res) => {
     ok(res, await getUnreadCount(req.auth.userId))
   })
@@ -46,6 +48,7 @@ router.post(
   '/notifications/read-all',
   writeLimiter,
   requireAuth,
+  userWriteLimiter,
   asyncHandler(async (req, res) => {
     ok(res, await markAllRead(req.auth.userId))
   })
@@ -56,6 +59,7 @@ router.post(
   '/notifications/:id/read',
   writeLimiter,
   requireAuth,
+  userWriteLimiter,
   asyncHandler(async (req, res) => {
     ok(res, await markRead(req.auth.userId, req.params.id))
   })

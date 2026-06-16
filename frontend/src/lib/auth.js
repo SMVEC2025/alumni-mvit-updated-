@@ -40,8 +40,9 @@ export function onAuthChange(callback) {
   return () => listeners.delete(callback)
 }
 
-function saveSession(accessToken, user) {
-  if (accessToken) setAccessToken(accessToken)
+function saveSession(user) {
+  // The session is cookie-backed; this only clears any legacy token copies.
+  setAccessToken(null)
   persist(USER_KEY, JSON.stringify(user))
   persist(VERIFIED_AT_KEY, String(Date.now()))
   _memoryUser = user
@@ -100,7 +101,7 @@ export async function verifyOtp(otp, mobileNumber, token) {
     otp: trimmed,
     challengeToken: token,
   })
-  saveSession(data.accessToken, data.user)
+  saveSession(data.user)
   // Stash any pre-fill the server returned so the completion form can show the
   // user their existing details. (Server returns this for any phone with prior
   // data; the UI treats it simply as a pre-filled form — no "recovery" wording.)
@@ -135,14 +136,14 @@ export async function checkMobileStatus(mobileNumber) {
 export async function login(mobileNumber, password) {
   const cleaned = normalizeMobile(mobileNumber)
   const data = await api.post('/auth/login', { mobileNumber: cleaned, password })
-  saveSession(data.accessToken, data.user)
+  saveSession(data.user)
   return data
 }
 
 export async function setPassword(mobileNumber, password) {
   // Requires an authenticated session (after OTP verify).
   const data = await api.post('/auth/password/set', { password })
-  if (data?.user) saveSession(getAccessToken(), data.user)
+  if (data?.user) saveSession(data.user)
   return data
 }
 
@@ -178,8 +179,6 @@ export async function revokeSession(revokeSessionId) {
 let _verifyPromise = null
 
 export async function verifySession() {
-  const token = getAccessToken()
-  if (!token) return null
   const cachedUser = getUser()
 
   const lastVerifiedAt = Math.max(
@@ -196,6 +195,7 @@ export async function verifySession() {
       const data = await api.get('/auth/me')
       persist(USER_KEY, JSON.stringify(data.user))
       persist(VERIFIED_AT_KEY, String(Date.now()))
+      setAccessToken(null)
       _memoryUser = data.user
       return data.user
     } catch (err) {

@@ -58,6 +58,7 @@ function AppContent() {
   const navigate = useNavigate()
   const location = useLocation()
   const navigationType = useNavigationType()
+  const showFooter = location.pathname !== '/login'
   const isDirectoryDetailPath = location.pathname.startsWith('/directory/alumni/')
   const isDirectoryNavPath = location.pathname === '/directory' || isDirectoryDetailPath
   const { directoryNavbar } = useNavbarContext()
@@ -258,7 +259,7 @@ function AppContent() {
             </Routes>
             </Suspense>
             </ErrorBoundary>
-            <Footer />
+            {showFooter ? <Footer /> : null}
           </main>
         </DirectoryCacheProvider>
       </SnackbarProvider>

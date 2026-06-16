@@ -4,7 +4,7 @@ import { asyncHandler } from '../utils/asyncHandler.js'
 import { ok, Errors } from '../utils/httpError.js'
 import { validate } from '../middleware/validate.js'
 import { requireAuth } from '../middleware/auth.js'
-import { otpLimiter, authLimiter, readLimiter, writeLimiter } from '../middleware/rateLimit.js'
+import { otpLimiter, otpMobileLimiter, authLimiter, readLimiter, writeLimiter } from '../middleware/rateLimit.js'
 import {
   otpSendSchema,
   otpVerifySchema,
@@ -74,6 +74,7 @@ router.post(
   '/otp/send',
   otpLimiter,
   validate(otpSendSchema),
+  otpMobileLimiter,
   asyncHandler(async (req, res) => {
     const { mobileNumber, turnstileToken } = req.body
     // Gate the SMS behind a Turnstile check so bots can't burn OTP credits.
@@ -130,7 +131,6 @@ router.post(
     }
 
     ok(res, {
-      accessToken,
       user: toPublicUser(user),
       registered,
       recovery,
@@ -154,7 +154,7 @@ router.post(
     await syncRole(user)
     const { accessToken, refreshToken } = await issueTokens(user, req)
     setAuthCookies(res, accessToken, refreshToken)
-    ok(res, { accessToken, user: toPublicUser(user) })
+    ok(res, { user: toPublicUser(user) })
   })
 )
 
@@ -228,7 +228,7 @@ router.post(
     await revokeSession(session._id)
     const { accessToken, refreshToken } = await issueTokens(user, req)
     setAuthCookies(res, accessToken, refreshToken)
-    ok(res, { accessToken, user: toPublicUser(user) })
+    ok(res, { user: toPublicUser(user) })
   })
 )
 
