@@ -49,13 +49,23 @@ export async function uploadImage({ userId, kind, buffer, contentType, uniqueId 
     key = `${userId}/${folder}/current`
   }
 
+  // Profile/cover images reuse a fixed key (…/current), so the URL is stable
+  // across re-uploads — only the bytes change. `stale-while-revalidate` lets the
+  // browser show its cached copy INSTANTLY (no reload flash on every visit) while
+  // it revalidates in the background, so a freshly uploaded photo still appears
+  // within a request or two. Post images get a unique key per upload and never
+  // change, so they can cache for far longer.
+  const cacheControl = kind === 'post'
+    ? 'public, max-age=31536000, immutable'
+    : 'public, max-age=300, stale-while-revalidate=86400'
+
   await client().send(
     new PutObjectCommand({
       Bucket: env.S3_BUCKET,
       Key: key,
       Body: buffer,
       ContentType: contentType,
-      CacheControl: 'public, max-age=60, must-revalidate',
+      CacheControl: cacheControl,
     })
   )
 

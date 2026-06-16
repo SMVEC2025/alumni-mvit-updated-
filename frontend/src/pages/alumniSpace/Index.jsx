@@ -150,8 +150,12 @@ function AlumniSpace() {
     setCurrentUserId(userId)
     setRegistrationId(row.id)
     setIsDisabled(Boolean(row.is_disabled))
-    setProfileImageUrl(withImageCacheBust(row.profile_image_url || ''))
-    setCoverImageUrl(withImageCacheBust(row.cover_image_url || ''))
+    // Use the stable stored URLs here (no cache-bust) so the browser can reuse
+    // its cached copy on every visit instead of re-downloading the image. The
+    // cache-bust is applied only right after an upload (see handleProfileImage/
+    // cover save), where we need the freshly-replaced file to show immediately.
+    setProfileImageUrl(row.profile_image_url || '')
+    setCoverImageUrl(row.cover_image_url || '')
     setForm({
       firstName: row.first_name || '',
       lastName: row.last_name || '',

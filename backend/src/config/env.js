@@ -32,6 +32,11 @@ const schema = z.object({
   OTP_API_AUTH_KEY: z.string().min(1, 'OTP_API_AUTH_KEY is required'),
   OTP_TTL_SEC: z.coerce.number().int().positive().default(300),
 
+  // Cloudflare Turnstile secret key — gates /otp/send so bots can't spam SMS.
+  // Optional so the app boots in dev without it (verification is then skipped);
+  // a boot warning fires when unset. MUST be set in production.
+  TURNSTILE_SECRET_KEY: z.string().optional().default(''),
+
   CONTACT_ENC_KEY: z
     .string()
     .min(1, 'CONTACT_ENC_KEY is required')
@@ -93,3 +98,6 @@ export const env = {
 // Loud warnings for optional-but-important integrations.
 if (!env.s3Configured) console.warn('⚠️  S3/R2 not configured — image uploads will fail.')
 if (!env.smtpConfigured) console.warn('⚠️  SMTP not configured — contact emails will not send.')
+if (!env.TURNSTILE_SECRET_KEY) {
+  console.warn('⚠️  TURNSTILE_SECRET_KEY not set — captcha check on /otp/send is DISABLED. Set it in production.')
+}

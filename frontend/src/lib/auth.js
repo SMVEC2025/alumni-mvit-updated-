@@ -80,11 +80,15 @@ export function getUser() {
 }
 
 // ── OTP ──
-export async function sendOtp(mobileNumber) {
+// turnstileToken is the Cloudflare Turnstile widget response; the backend
+// verifies it before sending the SMS. Omitted when Turnstile isn't configured.
+export async function sendOtp(mobileNumber, turnstileToken) {
   const cleaned = normalizeMobile(mobileNumber)
   if (!/^\d{10}$/.test(cleaned)) throw new Error('Enter a valid 10-digit mobile number.')
+  const body = { mobileNumber: cleaned }
+  if (turnstileToken) body.turnstileToken = turnstileToken
   // Returns { challengeToken, expiresInSec } — caller passes challengeToken to verifyOtp.
-  return api.post('/auth/otp/send', { mobileNumber: cleaned })
+  return api.post('/auth/otp/send', body)
 }
 
 export async function verifyOtp(otp, mobileNumber, token) {

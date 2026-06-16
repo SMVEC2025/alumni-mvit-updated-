@@ -108,7 +108,7 @@ gcloud run deploy smvec-alumni-api \
   --set-env-vars COOKIE_DOMAIN=.yourdomain.com,COOKIE_SAMESITE=none \
   --set-env-vars OTP_API_URL=https://your-otp-provider/send \
   --set-env-vars ADMIN_MOBILE_NUMBERS=9xxxxxxxxx \
-  --set-secrets MONGODB_URI=MONGODB_URI:latest,JWT_ACCESS_SECRET=JWT_ACCESS_SECRET:latest,JWT_REFRESH_SECRET=JWT_REFRESH_SECRET:latest,CONTACT_ENC_KEY=CONTACT_ENC_KEY:latest,OTP_API_AUTH_KEY=OTP_API_AUTH_KEY:latest
+  --set-secrets MONGODB_URI=MONGODB_URI:latest,JWT_ACCESS_SECRET=JWT_ACCESS_SECRET:latest,JWT_REFRESH_SECRET=JWT_REFRESH_SECRET:latest,CONTACT_ENC_KEY=CONTACT_ENC_KEY:latest,OTP_API_AUTH_KEY=OTP_API_AUTH_KEY:latest,TURNSTILE_SECRET_KEY=TURNSTILE_SECRET_KEY:latest
 ```
 
 > Add `S3_*` and `SMTP_*` to `--set-env-vars`/`--set-secrets` if used.

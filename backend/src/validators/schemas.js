@@ -10,7 +10,13 @@ const password = z.string().min(8, 'Password must be at least 8 characters.').ma
 const otp = z.string().regex(/^\d{6}$/, 'Enter the 6-digit OTP.')
 
 // ── Auth ──
-export const otpSendSchema = z.object({ mobileNumber: mobile }).strict()
+// turnstileToken is the Cloudflare Turnstile widget response, verified in
+// /otp/send before any SMS is sent. Optional in the schema (so dev without
+// Turnstile still validates); enforcement happens in the route when a secret
+// key is configured.
+export const otpSendSchema = z
+  .object({ mobileNumber: mobile, turnstileToken: z.string().max(2048).optional() })
+  .strict()
 export const otpVerifySchema = z
   .object({ mobileNumber: mobile, otp, challengeToken: z.string().min(1) })
   .strict()

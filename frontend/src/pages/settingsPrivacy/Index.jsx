@@ -412,9 +412,8 @@ function SettingsPrivacy() {
               </div>
 
               <div className="settings-note">
-                🔒 Your phone number and email address are private. They are never
-                shown to other alumni in the directory — only you and the alumni
-                office (staff) can see them.
+                Your phone number and email address are private. They are never
+                shown to other alumni in the directory.
               </div>
             </section>
             )}

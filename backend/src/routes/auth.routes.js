@@ -15,6 +15,14 @@ import {
 } from '../validators/schemas.js'
 import { sendOtp, verifyOtp } from '../services/otpService.js'
 import {
+  verifyTurnstile,
+  isTurnstileEnabled,
+  hasValidCaptchaPass,
+  issueCaptchaPass,
+  CAPTCHA_PASS_COOKIE,
+  CAPTCHA_PASS_MAX_AGE_MS,
+} from '../services/turnstileService.js'
+import {
   ensureUser,
   getUserByMobile,
   syncRole,
@@ -67,7 +75,29 @@ router.post(
   otpLimiter,
   validate(otpSendSchema),
   asyncHandler(async (req, res) => {
-    const { mobileNumber } = req.body
+    const { mobileNumber, turnstileToken } = req.body
+    // Gate the SMS behind a Turnstile check so bots can't burn OTP credits.
+    // No-op when TURNSTILE_SECRET_KEY is unset (dev). The user solves the
+    // captcha ONCE per attempt: a verified send mints a short-lived pass cookie,
+    // so a follow-up "Resend OTP" is allowed by that pass (no re-solve needed).
+    // Throws 400 when neither a fresh token nor a valid pass is present.
+    if (isTurnstileEnabled()) {
+      const hasPass = hasValidCaptchaPass(req.cookies?.[CAPTCHA_PASS_COOKIE])
+      if (turnstileToken) {
+        await verifyTurnstile(turnstileToken, req.ip)
+      } else if (!hasPass) {
+        await verifyTurnstile(turnstileToken, req.ip) // throws the captcha-required error
+      }
+      // Refresh the pass on every accepted send.
+      res.cookie(CAPTCHA_PASS_COOKIE, issueCaptchaPass(), {
+        httpOnly: true,
+        secure: env.isProd || env.cookieSameSite === 'none',
+        sameSite: env.cookieSameSite,
+        domain: env.cookieDomain,
+        path: '/api/auth',
+        maxAge: CAPTCHA_PASS_MAX_AGE_MS,
+      })
+    }
     const result = await sendOtp(mobileNumber)
     ok(res, {
       challengeToken: result.challengeToken,

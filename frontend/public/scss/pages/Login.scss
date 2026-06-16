@@ -381,6 +381,17 @@
           }
         }
 
+        // Cloudflare Turnstile captcha — sits between the mobile input and the
+        // Continue button on the first login step.
+        .turnstile-group {
+          display: flex;
+          justify-content: center;
+
+          .turnstile-widget {
+            min-height: 65px;
+          }
+        }
+
         .label-row {
           display: flex;
           justify-content: space-between;
