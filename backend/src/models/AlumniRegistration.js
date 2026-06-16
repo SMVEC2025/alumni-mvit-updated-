@@ -37,8 +37,9 @@ const alumniRegistrationSchema = new mongoose.Schema(
   {
     _id: { type: String, default: uuid },
 
-    // One registration per login identity.
-    userId: { type: String, required: true, ref: 'User', unique: true, index: true },
+    // One registration per login identity. null for unverified seed records that
+    // haven't been claimed by a login yet.
+    userId: { type: String, default: null, ref: 'User', sparse: true, index: true },
 
     // ── Identity (reviewed/entered by the user) ──
     name: { type: String, default: null, trim: true },

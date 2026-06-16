@@ -40,6 +40,7 @@ function baseView(doc) {
     profile_image_url: doc.image ?? null,
     cover_image_url: doc.coverImage ?? null,
     is_disabled: doc.isDisabled ?? false,
+    is_claimed: doc.status === 'verified',
     show_email: doc.showEmail ?? true,
     show_phone: doc.showPhone ?? false,
     created_at: doc.createdAt ?? null,

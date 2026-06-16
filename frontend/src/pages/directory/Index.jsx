@@ -613,8 +613,9 @@ function Directory() {
   const getHeadline = useCallback(
     (row) => {
       const role = getCurrentRole(row)
-      if (!role) return null
-      return role.designation || null
+      if (role) return null
+      const parts = [row.department, row.year_of_completion ? String(row.year_of_completion) : null].filter(Boolean)
+      return parts.length > 0 ? parts.join(' · ') : null
     },
     [getCurrentRole],
   )
@@ -828,11 +829,7 @@ function Directory() {
           {!loading && !error && (
             <>
               <div className="dir-results-toolbar">
-                <div className="dir-results-count">
-                  <strong>{totalCount}</strong>{' '}
-                  {totalCount === 1 ? 'alumnus' : 'alumni'} found
-                  {displayedAlumni.length > 0 && ` · showing ${displayedAlumni.length}`}
-                </div>
+                <div className="dir-results-count" />
 
                 <div className="dir-toolbar-right">
                   {isStaff && (
@@ -1232,6 +1229,7 @@ const PersonCard = memo(function PersonCard({
   const headline = getHeadline(row)
   const role = getCurrentRole(row)
   const isDisabled = row.is_disabled === true
+  const isClaimed = row.is_claimed !== false
   const protectedCoverImageUrl = protectedImageUrls?.[row.cover_image_url] || ''
   const protectedProfileImageUrl = protectedImageUrls?.[row.profile_image_url] || ''
 
@@ -1323,6 +1321,7 @@ const PersonRow = memo(function PersonRow({
   const headline = getHeadline(row)
   const location = getLocation(row)
   const isDisabled = row.is_disabled === true
+  const isClaimed = row.is_claimed !== false
   const protectedProfileImageUrl = protectedImageUrls?.[row.profile_image_url] || ''
   const rowDetailItems = [
     row.department,

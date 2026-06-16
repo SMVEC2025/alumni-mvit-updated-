@@ -56,11 +56,21 @@ export async function completeRegistration(userId, payload) {
     source,
   }
 
+  // Try to claim the unverified seed record for this phone first. This covers
+  // the case where migrate-seed-to-registrations.js has already inserted the
+  // row (status:'unverified', userId:null). We set userId + verified status so
+  // the record is now fully owned by this login identity.
+  const claimed = await AlumniRegistration.findOneAndUpdate(
+    { phone, status: 'unverified', userId: { $in: [null, undefined] } },
+    { $set: { ...fields, userId } },
+    { new: true, runValidators: true }
+  )
+  if (claimed) return claimed
+
+  // No unverified seed record to claim — upsert on userId as before.
   const registration = await AlumniRegistration.findOneAndUpdate(
     { userId },
     { $set: fields, $setOnInsert: { userId } },
-    // runValidators enforces the model-level degree enum + degree↔department pair
-    // guard on this write too (Mongoose skips validators on update by default).
     { new: true, upsert: true, setDefaultsOnInsert: true, runValidators: true }
   )
 

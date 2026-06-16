@@ -21,7 +21,7 @@ export const otpMobileLimiter = rateLimit({
   keyGenerator: (req) => `otp:mobile:${req.body?.mobileNumber ?? 'unknown'}`,
   message: { ok: false, error: { code: 'RATE_LIMITED', message: 'Too many OTP requests for this number. Please try again later.' } },
 })
-export const authLimiter = rateLimit({ ...base, windowMs: 15 * 60 * 1000, max: 8 })
+export const authLimiter = rateLimit({ ...base, windowMs: 15 * 60 * 1000, max: 30 })
 export const writeLimiter = rateLimit({ ...base, windowMs: 60 * 1000, max: 30 })
 export const readLimiter = rateLimit({ ...base, windowMs: 60 * 1000, max: 600 })
 export const contactLimiter = rateLimit({ ...base, windowMs: 60 * 60 * 1000, max: 3 })

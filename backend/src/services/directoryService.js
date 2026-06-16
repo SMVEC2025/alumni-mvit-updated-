@@ -20,7 +20,7 @@ function buildQuery({ viewer, params }) {
   const { search, dept, year, city, company, visibility } = params
   const isStaff = viewer && (viewer.role === 'staff' || viewer.role === 'admin')
 
-  const and = [{ status: 'verified' }]
+  const and = [{ status: { $in: ['verified', 'unverified'] } }]
 
   // Visibility: non-staff ONLY see enabled profiles. visibility=disabled is
   // staff-only; ignored otherwise.
@@ -80,7 +80,8 @@ export async function fetchDirectoryPage(viewer, params) {
 
 export async function fetchFilterMetadata(viewer) {
   const isStaff = viewer && (viewer.role === 'staff' || viewer.role === 'admin')
-  const match = isStaff ? { status: 'verified' } : { status: 'verified', isDisabled: false }
+  const statusFilter = { status: { $in: ['verified', 'unverified'] } }
+  const match = isStaff ? statusFilter : { ...statusFilter, isDisabled: false }
 
   const [departments, years] = await Promise.all([
     AlumniRegistration.distinct('department', match),
