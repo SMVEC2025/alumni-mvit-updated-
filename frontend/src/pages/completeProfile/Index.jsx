@@ -70,7 +70,7 @@ function prefillExperiences(work, nextId) {
 
 // Single profile-completion form for the mobile-OTP flow. Shows the user their
 // existing details (pre-filled from login when available) and forces them to
-// complete every field except LinkedIn + work experience, then submits a
+// complete every field including LinkedIn and work experience, then submits a
 // verified registration. Brand-new users see the same form, empty.
 function CompleteProfile() {
   const navigate = useNavigate()
@@ -85,7 +85,6 @@ function CompleteProfile() {
   const [isChecking, setIsChecking] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isValidatingProfileImage, setIsValidatingProfileImage] = useState(false)
-  const [showSuccess, setShowSuccess] = useState(false)
   const [error, setError] = useState('')
 
   // Identity fields.
@@ -242,7 +241,6 @@ function CompleteProfile() {
   }
 
   // Returns an error string for the first unmet REQUIRED field, or null.
-  // Required = everything except LinkedIn + work experience.
   const validate = () => {
     if (isValidatingProfileImage) return 'Please wait while we validate your profile photo.'
     if (!profileImage && !existingImageUrl) return 'Profile photo is required. Please upload a valid image.'
@@ -256,8 +254,21 @@ function CompleteProfile() {
     if (!stateName.trim()) return 'State is required.'
     if (!city.trim()) return 'City is required.'
     if (!/^\d{6}$/.test(pincode.trim())) return 'PIN code must be 6 digits.'
+    if (!linkedinUrl.trim()) return 'LinkedIn profile URL is required.'
     const normalizedLinkedin = normalizeLinkedInUrl(linkedinUrl)
-    if (linkedinUrl.trim() && !isValidLinkedInUrl(normalizedLinkedin)) return 'Please enter a valid LinkedIn URL.'
+    if (!isValidLinkedInUrl(normalizedLinkedin)) return 'Please enter a valid LinkedIn URL.'
+    if (!skipEmployment) {
+      const hasAtLeastOne = workExperiences.some((w) => w.company.trim() || (w.isStartup && w.startupName.trim()))
+      if (!hasAtLeastOne) return 'Please add at least one work experience or check "Currently not working".'
+      for (let i = 0; i < workExperiences.length; i++) {
+        const w = workExperiences[i]
+        if (w.isStartup) {
+          if (!w.startupName.trim()) return `Business / startup name is required for experience #${i + 1}.`
+        } else if (w.company.trim() && !w.designation.trim()) {
+          return `Designation is required for experience #${i + 1}.`
+        }
+      }
+    }
     return null
   }
 
@@ -332,9 +343,8 @@ function CompleteProfile() {
     const userId = getUser()?.id
     if (userId) safeLocalStorageSet(`smvec_reg_status_${userId}`, '1')
     window.dispatchEvent(new Event('registration:changed'))
-    // "Reviewed successfully" popup, then off to the dashboard.
-    setShowSuccess(true)
-    setTimeout(() => navigate('/alumni-space', { replace: true }), 1600)
+    enqueueSnackbar('Successfully verified', { variant: 'success' })
+    setTimeout(() => navigate('/alumni-space', { replace: true }), 1200)
   }
 
   if (isChecking) {
@@ -470,7 +480,7 @@ function CompleteProfile() {
             </div>
 
             {/* ── Work (optional) ── */}
-            <h3 className="section-title section-title--spaced">Work Experience <span style={{ fontWeight: 400, color: '#6b7280', fontSize: '0.85em' }}>(optional)</span></h3>
+            <h3 className="section-title section-title--spaced">Work Experience</h3>
             <label className="skip-employment-check">
               <input type="checkbox" checked={skipEmployment} onChange={(e) => setSkipEmployment(e.target.checked)} />
               <span>Currently not working / I prefer not to mention</span>
@@ -542,7 +552,7 @@ function CompleteProfile() {
             )}
 
             {/* ── LinkedIn (optional) ── */}
-            <h3 className="section-title section-title--spaced">LinkedIn <span style={{ fontWeight: 400, color: '#6b7280', fontSize: '0.85em' }}>(optional)</span></h3>
+            <h3 className="section-title section-title--spaced">LinkedIn</h3>
             <div className="form-group">
               <label>LinkedIn URL</label>
               <input type="text" value={linkedinUrl} onChange={(e) => setLinkedinUrl(e.target.value)} placeholder="https://www.linkedin.com/in/your-profile" />
@@ -558,15 +568,6 @@ function CompleteProfile() {
         </div>
       </div>
 
-      {showSuccess && (
-        <div className="reg-leave-overlay">
-          <div className="reg-leave-modal" style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: 48, lineHeight: 1, marginBottom: 8 }}>✅</div>
-            <h3>Reviewed successfully</h3>
-            <p>Your profile has been saved. Taking you to your dashboard…</p>
-          </div>
-        </div>
-      )}
     </div>
   )
 }
