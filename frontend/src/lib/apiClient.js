@@ -29,7 +29,7 @@ export class ApiError extends Error {
     this.code = code
     this.details = details
   }
-}
+}     
 
 export function getAccessToken() {
   return null
